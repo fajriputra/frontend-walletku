@@ -1,0 +1,49 @@
+.footer {
+  border-top: 1px solid #fff;
+  padding-top: 1.875rem;
+  padding-bottom: 2.625rem;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    flex-flow: column;
+
+    @media (min-width: 768px) {
+      justify-content: space-between;
+      flex-flow: row;
+    }
+
+    &--copyright {
+      font-size: 0.875rem;
+      color: rgba(239, 239, 239, 0.9);
+
+      @media (min-width: 768px) {
+        font-size: 1.125rem;
+        margin-bottom: 0;
+      }
+    }
+
+    &--info {
+      font-size: 0.875rem;
+
+      @media (min-width: 768px) {
+        font-size: 1.125rem;
+      }
+
+      a {
+        margin-right: 1.5rem;
+        text-decoration: none;
+        color: #e5e5e5;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        @media (min-width: 768px) {
+          margin-right: 5rem;
+        }
+      }
+    }
+  }
+}

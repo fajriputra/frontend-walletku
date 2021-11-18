@@ -1,0 +1,33 @@
+.siteinfo {
+  background-color: #6379f4;
+  padding-top: 3.125rem;
+  margin-bottom: 0 !important;
+
+  @media (min-width: 768px) {
+    padding-top: 4.375rem;
+  }
+
+  &__content {
+    margin-bottom: 3.125rem;
+    max-width: 300px;
+
+    &--image {
+      margin-bottom: 1.875rem;
+
+      &--text {
+        font-size: 1.875rem;
+        color: #fff;
+        font-weight: 700;
+      }
+    }
+
+    &--text {
+      font-size: 1rem;
+      margin-bottom: 0;
+      color: rgba(239, 239, 239, 0.75);
+      @media (min-width: 768px) {
+        font-size: 1.125rem;
+      }
+    }
+  }
+}

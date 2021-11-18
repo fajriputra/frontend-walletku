@@ -1,0 +1,120 @@
+.right__column {
+  padding: 1.875rem 1.25rem;
+
+  @media (min-width: 768px) {
+    padding-top: 120px;
+    padding-left: 3.125rem;
+    padding-right: 150px;
+  }
+
+  &--form {
+    &--heading {
+      margin-bottom: 1.875rem;
+
+      @media (min-width: 768px) {
+        margin-bottom: 3.125rem;
+      }
+
+      h5 {
+        font-size: 1.25rem;
+        color: #3a3d42;
+        font-weight: 700;
+        line-height: 2.0625rem;
+        margin-bottom: 1.875rem;
+
+        @media (min-width: 768px) {
+          font-size: 1.5rem;
+        }
+      }
+
+      p {
+        color: rgba(58, 61, 66, 0.6);
+        line-height: 1.875rem;
+        font-size: 0.875rem;
+        margin-bottom: 0;
+
+        @media (min-width: 768px) {
+          font-size: 1.125rem;
+        }
+      }
+    }
+
+    &--wrapper {
+      .form-group {
+        margin-bottom: 2.5rem;
+
+        .form__input {
+          padding: 0 1.875rem;
+
+          &::placeholder {
+            font-size: 0.875rem;
+
+            @media (min-width: 768px) {
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .icon {
+          width: 1.25rem;
+          height: 1.25rem;
+          position: absolute;
+          top: 0.3125rem;
+          margin-bottom: 0;
+          z-index: 9999;
+
+          &.eye {
+            right: 0;
+          }
+        }
+      }
+
+      .btn__forgot {
+        color: rgba(58, 61, 66, 0.8);
+        font-weight: 600;
+        font-size: 0.875rem;
+
+        @media (min-width: 768px) {
+          font-size: 1rem;
+        }
+      }
+
+      .btn__signin,
+      .btn__signup,
+      .btn__confirm,
+      .btn__reset {
+        width: 100%;
+        background-color: #dadada;
+        box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+        border-radius: 0.5rem;
+        border: none;
+        outline: none;
+        height: 2.8125rem;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #88888f;
+        margin: 1.875rem auto;
+
+        @media (min-width: 768px) {
+          height: 3.5625rem;
+          margin-bottom: 2.5rem;
+          font-size: 1.125rem;
+        }
+      }
+
+      .btn__link {
+        text-align: center;
+        color: rgba(58, 61, 66, 0.8);
+        font-size: 0.875rem;
+
+        @media (min-width: 768px) {
+          font-size: 1.125rem;
+        }
+        span {
+          color: #6379f4;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
