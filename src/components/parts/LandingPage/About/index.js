@@ -56,7 +56,7 @@ export default function About(props) {
 
                 <h5>Easy Download</h5>
                 <p>
-                  Zwallet is 100% totally free to use it’s now available on
+                  WalletKU is 100% totally free to use it’s now available on
                   Google Play Store and App Store.
                 </p>
               </div>

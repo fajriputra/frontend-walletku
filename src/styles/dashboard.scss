@@ -1,0 +1,99 @@
+.dashboard {
+  &__balance--card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.875rem;
+    background-color: #6379f4;
+    border-radius: 1.25rem;
+    margin-bottom: 2.5rem;
+
+    &--text {
+      .text__balance {
+        font-size: 1.125rem;
+        color: #e0e0e0;
+        margin-bottom: 0;
+      }
+
+      .text__amount {
+        font-size: 2.5rem;
+        color: #fff;
+        margin: 0.9375rem auto;
+        font-weight: bold;
+      }
+
+      .text__telp {
+        font-size: 0.875rem;
+        color: #dfdcdc;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+    }
+
+    &--button {
+      display: flex;
+      align-items: center;
+      flex-flow: column;
+
+      .btn__flex {
+        display: flex;
+        align-items: center;
+        font-size: 1.125rem;
+        color: #fff;
+        font-weight: 600;
+        padding: 0.75rem 1.75rem;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid #ffffff;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  &__statistic--card,
+  &__history--card {
+    background-color: #fff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+    padding: 1.875rem;
+
+    &--head,
+    &--head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3.125rem;
+
+      .icon {
+        margin-right: 0;
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+
+      .text__statistic {
+        font-size: 0.875rem;
+        color: #6a6a6a;
+        margin: 0.625rem auto;
+      }
+
+      .text__statistic--amount {
+        font-size: 1.125rem;
+        color: #3a3d42;
+        font-weight: bold;
+      }
+
+      .text__transaction {
+        margin-bottom: 0;
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #3a3d42;
+      }
+
+      .text__seeall {
+        font-size: 0.875rem;
+        color: #6379f4;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

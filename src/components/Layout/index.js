@@ -1,9 +1,14 @@
 import React from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
+
 import Header from "components/Header";
 import SiteInfo from "components/Siteinfo";
+import Footer from "components/Footer";
 
 export default function Layout(props) {
+  const router = useRouter();
+
   if (props.isAuth) {
     return (
       <Head>
@@ -33,9 +38,17 @@ export default function Layout(props) {
       <meta property="og:url" content={props.metaOgUrl} />
       <meta property="og:description" content={props.metaOgDescription} />
       <meta property="og:image" content={props.metaOgImage} />
-      <Header />
+      {router.pathname !== "/" ? (
+        <Header className="header__home" />
+      ) : (
+        <Header />
+      )}
       {props.children}
-      <SiteInfo />
+      {router.pathname !== "/" ? (
+        <Footer className="footer__home" />
+      ) : (
+        <SiteInfo />
+      )}
     </Head>
   );
 }

@@ -1,15 +1,16 @@
 import React from "react";
 
 import Button from "components/Button";
+import Logo from "components/Logo";
+// import UserProfile from "components/UserProfile";
+// import Figure from "components/Figure";
 
 export default function Header(props) {
   return (
     <header className={["header", props.className].join(" ")}>
       <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <Button className="navbar-brand" type="link" href="/">
-            <span className="navbar-brand--text">WalletKU</span>
-          </Button>
+          <Logo />
           <Button className="navbar-toggler" type="button">
             <span className="navbar-toggler-icon"></span>
           </Button>
@@ -30,6 +31,17 @@ export default function Header(props) {
               >
                 Sign up
               </Button>
+              {/* <UserProfile name="Robert Chandler" sub="+62 8139 3877 7946">
+                <Button className="btn btn__bell">
+                  <Figure
+                    // srcImage={BellSVG}
+                    srcImage="../../../images/icons/icon-bell.svg"
+                    altImage="Bell SVG"
+                    className="btn__bell--image"
+                    imageClass="img-cover"
+                  />
+                </Button>
+              </UserProfile> */}
             </ul>
           </div>
         </div>

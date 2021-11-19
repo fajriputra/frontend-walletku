@@ -6,7 +6,7 @@ import React from "react";
 export default function Signin(props) {
   return (
     <Layout pageTitle="Sign In" isAuth>
-      <section className="signin">
+      <section className="signin mb-0">
         <div className="row g-0">
           <div className="col-lg-6">
             <LeftColumn />

@@ -6,7 +6,7 @@ import React from "react";
 export default function Signup(props) {
   return (
     <Layout pageTitle="Sign Up" isAuth>
-      <section className="signup">
+      <section className="signup mb-0">
         <div className="row g-0">
           <div className="col-lg-6">
             <LeftColumn />

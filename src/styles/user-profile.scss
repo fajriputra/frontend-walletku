@@ -1,0 +1,63 @@
+.user__profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+
+  .text__amount--transaction {
+    margin-bottom: 0;
+    color: #1ec15f;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &--data {
+    display: flex;
+    align-items: center;
+
+    &--display {
+      margin-left: 0.9375rem;
+      margin-right: 0.625rem;
+
+      &--name {
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #3a3d42;
+
+        &.f-16 {
+          font-size: 1rem;
+        }
+      }
+
+      &--sub {
+        font-size: 0.8125rem;
+        color: rgba(58, 61, 66, 0.9);
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &--image {
+    width: 50px;
+    height: 50px;
+    border-radius: 0.625rem;
+    margin-bottom: 0;
+
+    .border__inherit {
+      border-radius: inherit;
+    }
+  }
+
+  .btn__bell {
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    &--image {
+      margin-bottom: 0;
+    }
+  }
+}

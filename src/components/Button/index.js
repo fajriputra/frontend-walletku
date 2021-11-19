@@ -41,8 +41,10 @@ const Button = (props) => {
       );
     } else {
       return (
-        <Link href={props.href} style={props.style} onClick={onClick}>
-          <a className={className.join(" ")}>{props.children}</a>
+        <Link href={props.href} style={props.style}>
+          <a className={className.join(" ")} onClick={onClick}>
+            {props.children}
+          </a>
         </Link>
       );
     }
@@ -67,12 +69,7 @@ Button.propTypes = {
   target: propTypes.string,
   href: propTypes.string,
   className: propTypes.string,
-  isPrimary: propTypes.bool,
-  isLight: propTypes.bool,
   isDisabled: propTypes.oneOfType([propTypes.bool, propTypes.string]),
   isLoading: propTypes.bool,
-  isSmall: propTypes.bool,
-  isLarge: propTypes.bool,
-  isBlock: propTypes.bool,
   isExternal: propTypes.bool,
 };

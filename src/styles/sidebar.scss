@@ -1,0 +1,37 @@
+.home__link {
+  padding: 3.125rem 2.1875rem;
+  height: 678px;
+  background-color: #fff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  position: relative;
+
+  &--aside {
+    padding: 0;
+    margin-bottom: 0;
+
+    &--list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin-bottom: 3.125rem;
+
+      &--svg {
+        margin-right: 1.25rem;
+      }
+
+      &.logout {
+        position: absolute;
+        bottom: 0;
+      }
+
+      .btn__sidebar--link {
+        font-size: 1.125rem;
+        color: rgba(58, 61, 66, 0.8);
+        text-decoration: none;
+        padding: 0;
+        font-weight: 700;
+      }
+    }
+  }
+}

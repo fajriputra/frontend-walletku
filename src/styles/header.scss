@@ -1,3 +1,13 @@
+.header__home {
+  padding: 1.875rem 0 !important;
+  margin-bottom: 3.125rem;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: #fff;
+  margin-bottom: 2.5rem;
+}
+
 .header {
   padding-top: 1.875rem;
   margin-bottom: 3.125rem;
@@ -7,16 +17,6 @@
   }
 
   .navbar {
-    &-brand {
-      padding: 0;
-
-      &--text {
-        font-size: 1.875rem;
-        color: #6379f4;
-        font-weight: 700;
-      }
-    }
-
     &-toggler {
       padding: 0;
       border: none;

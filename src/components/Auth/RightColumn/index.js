@@ -109,6 +109,11 @@ export default function RightColumn(props) {
     return <FormCreatePin isSuccess />;
   }
 
+  const test = (e) => {
+    // e.preventDefault();
+    alert("test");
+  };
+
   return (
     <div className="right__column">
       <div className="right__column--form">
@@ -130,6 +135,7 @@ export default function RightColumn(props) {
               placeholder="Enter your e-mail"
               type="email"
               inputClassName="form__input"
+              onChange={test}
             />
             <Figure
               srcImage="../../../../images/icons/icon-email.svg"
@@ -167,7 +173,9 @@ export default function RightColumn(props) {
             </Button>
           </div>
 
-          <Button className="btn__signin">Sign In</Button>
+          <Button className="btn__signin" onClick={test}>
+            Sign In
+          </Button>
 
           <div className="text-center">
             <Button className="btn btn__link p-0" type="link" href="/signup">

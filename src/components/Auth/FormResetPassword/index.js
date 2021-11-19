@@ -16,7 +16,7 @@ export default function FormResetPassword(props) {
               Password In a Minutes.
             </h5>
             <p>
-              Now you can create a new password for your Zwallet account. Type
+              Now you can create a new password for your WalletKU account. Type
               your password twice so we can confirm your new passsword.
             </p>
           </div>

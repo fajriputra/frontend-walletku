@@ -113,3 +113,13 @@ section {
   padding: 0.75rem;
   border-radius: 0.5rem;
 }
+
+.navbar-brand {
+  padding: 0;
+
+  &--text {
+    font-size: 1.875rem;
+    color: #6379f4;
+    font-weight: 700;
+  }
+}

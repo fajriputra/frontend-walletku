@@ -2,6 +2,7 @@ import FormInput from "components/FormInput";
 import Button from "components/Button";
 import React from "react";
 import Figure from "components/Figure";
+import Pin from "components/Pin";
 
 export default function FormCreatePin(props) {
   if (props.isSuccess) {
@@ -47,53 +48,14 @@ export default function FormCreatePin(props) {
           </h5>
           <p>
             Create 6 digits pin to secure all your money and your data in
-            Zwallet app. Keep it secret and don’t tell anyone about your Zwallet
-            account password and the PIN.
+            WalletKU app. Keep it secret and don’t tell anyone about your
+            WalletKU account password and the PIN.
           </p>
         </div>
 
-        <form className="right__column--form--wrapper">
-          <div className="form__pin">
-            <FormInput
-              type="number"
-              maxLength="1"
-              inputClassName="form__input pin"
-              id="pin-1"
-            />
-            <FormInput
-              type="number"
-              maxLength="1"
-              inputClassName="form__input pin"
-              id="pin-2"
-            />
-            <FormInput
-              type="number"
-              maxLength="1"
-              inputClassName="form__input pin"
-              id="pin-3"
-            />
-            <FormInput
-              type="number"
-              maxLength="1"
-              inputClassName="form__input pin"
-              id="pin-4"
-            />
-            <FormInput
-              type="number"
-              maxLength="1"
-              inputClassName="form__input pin"
-              id="pin-5"
-            />
-            <FormInput
-              type="number"
-              maxLength="1"
-              inputClassName="form__input pin"
-              id="pin-5"
-            />
-          </div>
-
+        <Pin>
           <Button className="btn__confirm">Confirm</Button>
-        </form>
+        </Pin>
       </div>
     </div>
   );

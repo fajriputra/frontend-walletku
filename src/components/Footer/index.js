@@ -1,9 +1,9 @@
 import React from "react";
 import Button from "components/Button";
 
-export default function Footer() {
+export default function Footer(props) {
   return (
-    <footer className="footer">
+    <footer className={["footer", props.className].join(" ")}>
       <div className="footer__content">
         <p className="footer__content--copyright">
           2021 WalletKU. All right reserved.
@@ -21,7 +21,7 @@ export default function Footer() {
             type="link"
             isExternal
             target="_blank"
-            href="mailto:contact@zwallet.com"
+            href="mailto:contact@walletku.com"
           >
             contact@walletku.com
           </Button>
