@@ -11,6 +11,28 @@ export default function Layout(props) {
 
   if (props.isAuth) {
     return (
+      <>
+        <Head>
+          <title>WalletKU | {props.pageTitle}</title>
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+          <meta property="og:type" content={props.metaType} />
+          <meta name="description" content={props.metaDescription} />
+          <meta property="og:title" content={props.metaTitle} />
+          <meta name="keywords" content={props.metaKeyword} />
+          <meta property="og:url" content={props.metaOgUrl} />
+          <meta property="og:description" content={props.metaOgDescription} />
+          <meta property="og:image" content={props.metaOgImage} />
+        </Head>
+        {props.children}
+      </>
+    );
+  }
+
+  return (
+    <>
       <Head>
         <title>WalletKU | {props.pageTitle}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -21,23 +43,8 @@ export default function Layout(props) {
         <meta property="og:url" content={props.metaOgUrl} />
         <meta property="og:description" content={props.metaOgDescription} />
         <meta property="og:image" content={props.metaOgImage} />
-
-        {props.children}
       </Head>
-    );
-  }
 
-  return (
-    <Head>
-      <title>WalletKU | {props.pageTitle}</title>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <meta property="og:type" content={props.metaType} />
-      <meta name="description" content={props.metaDescription} />
-      <meta property="og:title" content={props.metaTitle} />
-      <meta name="keywords" content={props.metaKeyword} />
-      <meta property="og:url" content={props.metaOgUrl} />
-      <meta property="og:description" content={props.metaOgDescription} />
-      <meta property="og:image" content={props.metaOgImage} />
       {router.pathname !== "/" ? (
         <Header className="header__home" />
       ) : (
@@ -49,6 +56,6 @@ export default function Layout(props) {
       ) : (
         <SiteInfo />
       )}
-    </Head>
+    </>
   );
 }

@@ -1,7 +1,7 @@
-import Button from "components/Button";
-import Figure from "components/Figure";
-import FormInput from "components/FormInput";
 import React from "react";
+import { EmailSVG, EyeCrossedSVG, LockSVG, PersonSVG } from "components/SVG";
+import Button from "components/Button";
+import FormInput from "components/FormInput";
 import FormCreatePin from "../FormCreatePin";
 import FormResetPassword from "../FormResetPassword";
 
@@ -22,67 +22,115 @@ export default function RightColumn(props) {
             </p>
           </div>
 
-          <form className="right__column--form--wrapper">
+          <form
+            className="right__column--form--wrapper"
+            onSubmit={props.onSubmit}
+          >
             <div className="form-group position-relative">
               <FormInput
                 placeholder="Enter your firstname"
-                inputClassName="form__input"
+                inputClassName={["form__input", props.classFirstname].join(" ")}
+                onChange={props.onChange}
+                value={props.firstname}
+                name="firstName"
               />
-              <Figure
-                srcImage="../../../../images/icons/icon-person.svg"
-                altImage="Icon Person"
+
+              <PersonSVG
+                width="24"
+                height="24"
+                stroke={props.strokePerson1}
                 className="icon"
-                imageClass="img-cover"
               />
             </div>
             <div className="form-group position-relative">
               <FormInput
                 placeholder="Enter your lastname"
-                inputClassName="form__input"
+                inputClassName={["form__input", props.classLastname].join(" ")}
+                onChange={props.onChange}
+                value={props.lastname}
+                name="lastName"
               />
-              <Figure
-                srcImage="../../../../images/icons/icon-person.svg"
-                altImage="Icon Person"
+
+              <PersonSVG
+                width="24"
+                height="24"
+                stroke={props.strokePerson2}
                 className="icon"
-                imageClass="img-cover"
               />
             </div>
             <div className="form-group position-relative">
               <FormInput
                 placeholder="Enter your e-mail"
-                type="email"
-                inputClassName="form__input"
+                inputClassName={["form__input", props.classEmail].join(" ")}
+                onChange={props.onChange}
+                value={props.email}
+                name="email"
               />
-              <Figure
-                srcImage="../../../../images/icons/icon-email.svg"
-                altImage="Icon Email"
+
+              <EmailSVG
+                width="24"
+                height="24"
+                stroke={props.strokeEmail}
                 className="icon"
-                imageClass="img-cover"
+              />
+            </div>
+            <div className="form-group position-relative">
+              <FormInput
+                placeholder="Enter your password"
+                inputClassName={["form__input", props.classPassword].join(" ")}
+                onChange={props.onChange}
+                value={props.password}
+                type="password"
+                name="password"
+              />
+              <LockSVG
+                width="24"
+                height="24"
+                className="icon"
+                stroke={props.strokeLock}
+              />
+              <EyeCrossedSVG
+                width="24"
+                height="24"
+                className="icon eye"
+                stroke="#A9A9A9"
               />
             </div>
             <div className="form-group position-relative mb-3">
               <FormInput
-                placeholder="Enter your password"
-                inputClassName="form__input"
+                placeholder="Enter your confirm password"
+                inputClassName={["form__input", props.classConfirm].join(" ")}
+                onChange={props.onChange}
+                value={props.confirmPassword}
+                type="password"
+                name="confirmation_password"
               />
-              <Figure
-                srcImage="../../../../images/icons/icon-lock.svg"
-                altImage="Icon Lock"
+              <LockSVG
+                width="24"
+                height="24"
                 className="icon"
-                imageClass="img-cover"
+                stroke={props.strokeLock2}
               />
-              <Figure
-                srcImage="../../../../images/icons/icon-eye-crossed.svg"
-                altImage="Icon Eye"
+              <EyeCrossedSVG
+                width="24"
+                height="24"
                 className="icon eye"
-                imageClass="img-cover"
+                stroke="#A9A9A9"
               />
             </div>
 
-            <Button className="btn__signup">Sign Up</Button>
+            <p className="error-helpers">{props.displayError}</p>
+
+            <Button
+              className={["btn btn__signup w-100", props.classSubmit].join(" ")}
+              isDisabled={props.isDisabled}
+              isLoading={props.isLoading}
+            >
+              Sign Up
+            </Button>
 
             <div className="text-center">
-              <Button className="btn btn__link p-0" type="link" href="/signup">
+              <Button className="btn btn__link p-0" type="link" href="/signin">
                 Already have an account? Let&apos;s{" "}
                 <span className="text__link">Sign In</span>
               </Button>
@@ -94,25 +142,53 @@ export default function RightColumn(props) {
   }
 
   if (props.isConfirm) {
-    return <FormResetPassword isConfirmPassword />;
+    return (
+      <FormResetPassword
+        isConfirmPassword
+        onSubmit={props.onSubmit}
+        onChange={props.onChange}
+        password={props.password}
+        confirm={props.confirm}
+        classNewPassword={props.classNewPassword}
+        classConfirm={props.classConfirm}
+        strokeLock={props.strokeLock}
+        strokeLock2={props.strokeLock2}
+        displayError={props.displayError}
+        isLoading={props.isLoading}
+        isDisabled={props.isDisabled}
+      />
+    );
   }
 
   if (props.isReset) {
-    return <FormResetPassword />;
+    return (
+      <FormResetPassword
+        onSubmit={props.onSubmit}
+        onChange={props.onChange}
+        formClassReset={props.formClassReset}
+        email={props.email}
+        stroke={props.strokeEmail}
+        isLoading={props.isLoading}
+        isDisabled={props.isDisabled}
+      />
+    );
   }
 
   if (props.createPin) {
-    return <FormCreatePin />;
+    return (
+      <FormCreatePin
+        onSubmit={props.onSubmit}
+        onChange={props.onChange}
+        isLoading={props.isLoading}
+        isDisabled={props.isDisabled}
+        classPin={props.classPin}
+      />
+    );
   }
 
   if (props.isCreatedSuccess) {
     return <FormCreatePin isSuccess />;
   }
-
-  const test = (e) => {
-    // e.preventDefault();
-    alert("test");
-  };
 
   return (
     <div className="right__column">
@@ -129,37 +205,47 @@ export default function RightColumn(props) {
           </p>
         </div>
 
-        <form className="right__column--form--wrapper">
+        <form
+          className="right__column--form--wrapper"
+          onSubmit={props.onSubmit}
+        >
           <div className="form-group position-relative">
             <FormInput
               placeholder="Enter your e-mail"
-              type="email"
-              inputClassName="form__input"
-              onChange={test}
+              name="email"
+              inputClassName={["form__input", props.classEmail].join(" ")}
+              onChange={props.onChange}
+              value={props.email}
             />
-            <Figure
-              srcImage="../../../../images/icons/icon-email.svg"
-              altImage="Icon Email"
+
+            <EmailSVG
+              width="24"
+              height="24"
+              stroke={props.strokeEmail}
               className="icon"
-              imageClass="img-cover"
             />
           </div>
           <div className="form-group position-relative mb-3">
             <FormInput
               placeholder="Enter your password"
-              inputClassName="form__input"
+              inputClassName={["form__input", props.classPassword].join(" ")}
+              type="password"
+              name="password"
+              onChange={props.onChange}
+              value={props.password}
             />
-            <Figure
-              srcImage="../../../../images/icons/icon-lock.svg"
-              altImage="Icon Lock"
+
+            <LockSVG
+              width="24"
+              height="24"
               className="icon"
-              imageClass="img-cover"
+              stroke={props.strokeLock}
             />
-            <Figure
-              srcImage="../../../../images/icons/icon-eye-crossed.svg"
-              altImage="Icon Eye"
+            <EyeCrossedSVG
+              width="24"
+              height="24"
               className="icon eye"
-              imageClass="img-cover"
+              stroke="#A9A9A9"
             />
           </div>
 
@@ -167,13 +253,19 @@ export default function RightColumn(props) {
             <Button
               className="btn btn__forgot p-0"
               type="link"
-              href="/forgotpassword"
+              href="/reset-password"
             >
               Forgot password?
             </Button>
           </div>
 
-          <Button className="btn__signin" onClick={test}>
+          <p className="error-helpers">{props.displayError}</p>
+
+          <Button
+            className={["btn btn__signin w-100", props.classSubmit].join(" ")}
+            isDisabled={props.isDisabled}
+            isLoading={props.isLoading}
+          >
             Sign In
           </Button>
 

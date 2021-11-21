@@ -1,15 +1,19 @@
 import React from "react";
 
 import Figure from "components/Figure";
-import Button from "components/Button";
 
 export default function UserProfile(props) {
   return (
     <>
-      <div className="user__profile" onClick={props.onClick}>
-        <div className="user__profile--data">
+      <div
+        className={["user__profile", props.className].join(" ")}
+        onClick={props.onClick}
+      >
+        <div
+          className={["user__profile--data", props.innerClassName].join(" ")}
+        >
           <Figure
-            srcImage="../../../images/testimony1.png"
+            srcImage={props.imageSrc}
             altImage="Profile Image"
             className="user__profile--image"
             imageClass="img-cover border__inherit"

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import Button from "components/Button";
 import Layout from "components/Layout";
 import Balance from "components/parts/Home/Dashboard/Balance";
@@ -8,13 +6,12 @@ import Statistic from "components/parts/Home/Dashboard/Statistic";
 import TransactionHistory from "components/parts/Home/Dashboard/TransactionHistory";
 import Sidebar from "components/Sidebar";
 
+import { useState } from "react";
+
 export default function Dashboard(props) {
   const [handleShowHistory, setHandleShowHistory] = useState(false);
 
-  const handleClickShow = () => {
-    alert("testt");
-    console.log("test");
-  };
+  const handeShowClick = () => setHandleShowHistory(!handleShowHistory);
 
   return (
     <Layout pageTitle="Dashboard">
@@ -45,8 +42,7 @@ export default function Dashboard(props) {
                           </h6>
                           <Button
                             className="btn text__seeall p-0"
-                            // onClick={handleClickShow}
-                            onClick={handleClickShow}
+                            onClick={handeShowClick}
                           >
                             See all
                           </Button>
@@ -58,14 +54,6 @@ export default function Dashboard(props) {
                   </div>
                 </>
               )}
-
-              <button
-                className="btn text__seeall p-0"
-                // onClick={handleClickShow}
-                onClick={handleClickShow}
-              >
-                See all
-              </button>
             </div>
           </div>
         </div>

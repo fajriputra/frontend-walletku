@@ -1,0 +1,30 @@
+.transaction {
+  &__history--card {
+    background-color: #fff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+    padding: 1.875rem;
+
+    &--head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.1875rem;
+
+      &--text {
+        margin-bottom: 0;
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #3a3d42;
+      }
+
+      .dropdown__toggle {
+        padding: 0.5rem 1.75rem;
+        background: rgba(58, 61, 66, 0.1);
+        border-radius: 12px;
+        font-size: 0.8125rem;
+        color: #000;
+      }
+    }
+  }
+}

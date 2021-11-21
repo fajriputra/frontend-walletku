@@ -1,0 +1,44 @@
+.transfer__card {
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  padding: 1.875rem;
+  height: 678px;
+
+  &--head {
+    margin-bottom: 1.875rem;
+
+    .text__heading {
+      font-size: 1.125rem;
+      color: #3a3d42;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group {
+      .form__input--receiver {
+        background: rgba(58, 61, 66, 0.1);
+        border-radius: 12px;
+        padding: 0.9375rem 3.125rem;
+        border: none;
+        outline: none;
+        height: 50px;
+
+        &::placeholder {
+          color: rgba(58, 61, 66, 0.4);
+          font-weight: 500;
+        }
+      }
+
+      input[type="text"] {
+        color: rgba(58, 61, 66, 0.4);
+      }
+
+      .icon__search {
+        position: absolute;
+        top: 13px;
+        left: 15px;
+      }
+    }
+  }
+}

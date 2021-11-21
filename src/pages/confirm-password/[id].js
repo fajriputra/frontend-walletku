@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-
 import axios from "helpers/axios";
-import { getDataCookie } from "middlewares/authorizationPage";
+import { useRouter } from "next/router";
+
 import LeftColumn from "components/Auth/LeftColumn";
 import RightColumn from "components/Auth/RightColumn";
 import Layout from "components/Layout";
 
 const initialState = {
-  email: "",
-  linkDirect: "http://localhost:3000/confirm-password",
+  keysChangePassword: "",
+  newPassword: "",
+  confirmPassword: "",
   error: "",
 };
 
@@ -19,24 +20,13 @@ const statusList = {
   error: "error",
 };
 
-export async function getServerSideProps(context) {
-  const dataCookie = await getDataCookie(context);
-  if (dataCookie.isLogin) {
-    return {
-      redirect: {
-        destination: "/dashboard",
-        permanent: false,
-      },
-    };
-  }
-  return { props: {} };
-}
-
-export default function ResetPassword(props) {
+export default function ConfirmPassword(props) {
   const [form, setForm] = useState(initialState);
   const [status, setStatus] = useState(statusList.idle);
 
-  const { email, linkDirect } = form;
+  const router = useRouter();
+
+  const { newPassword, confirmPassword, keysChangePassword } = form;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,12 +38,19 @@ export default function ResetPassword(props) {
 
     setStatus(statusList.process);
     try {
-      await axios.post("/auth/forgot-password", {
-        email,
-        linkDirect,
+      if (newPassword !== confirmPassword) {
+        setForm({ ...form, error: "Password doesn't matches" });
+        return setStatus(statusList.idle);
+      }
+
+      await axios.patch(`/auth/reset-password`, {
+        keysChangePassword: router.query.id,
+        newPassword,
+        confirmPassword,
       });
 
-      setForm(initialState);
+      router.push("/signin");
+
       setStatus(statusList.error);
     } catch (err) {
       err.response.data.msg &&
@@ -67,7 +64,7 @@ export default function ResetPassword(props) {
   };
 
   return (
-    <Layout pageTitle="Reset Password" isAuth>
+    <Layout pageTitle="Confirm Password" isAuth>
       <section className="reset__password mb-0">
         <div className="row g-0">
           <div className="col-lg-6">
@@ -75,14 +72,17 @@ export default function ResetPassword(props) {
           </div>
           <div className="col-lg-6">
             <RightColumn
-              isReset
-              onChange={handleChange}
+              isConfirm
               onSubmit={handleSubmit}
-              email={form.email}
-              strokeEmail={form.email ? "#6379F4" : "#A9A9A9"}
-              formClassReset={form.email ? "active" : ""}
-              displayError={form.error}
+              onChange={handleChange}
+              password={form.newPassword}
+              confirm={form.confirmPassword}
+              classNewPassword={form.newPassword ? "active" : ""}
+              classConfirm={form.confirmPassword ? "active" : ""}
+              strokeLock={form.newPassword ? "#6379F4" : "#A9A9A9"}
+              strokeLock2={form.confirmPassword ? "#6379F4" : "#A9A9A9"}
               isLoading={status === statusList.process}
+              displayError={form.error}
             />
           </div>
         </div>

@@ -53,11 +53,17 @@
               font-size: 1rem;
             }
           }
+
+          &.active {
+            border-bottom-color: #6379f4;
+          }
+
+          &.invalid {
+            border-bottom-color: #ff5b37;
+          }
         }
 
         .icon {
-          width: 1.25rem;
-          height: 1.25rem;
           position: absolute;
           top: 0.3125rem;
           margin-bottom: 0;
@@ -79,6 +85,20 @@
         }
       }
 
+      .error-helpers {
+        color: #ff5b37;
+        font-weight: 600;
+        font-size: 1.125rem;
+        text-align: center;
+      }
+
+      .success-helpers {
+        color: #1ec15f;
+        font-weight: 600;
+        font-size: 1.125rem;
+        text-align: center;
+      }
+
       .btn__signin,
       .btn__signup,
       .btn__confirm,
@@ -94,11 +114,23 @@
         font-size: 1rem;
         color: #88888f;
         margin: 1.875rem auto;
+        padding: 0;
 
         @media (min-width: 768px) {
           height: 3.5625rem;
           margin-bottom: 2.5rem;
           font-size: 1.125rem;
+        }
+
+        &.active {
+          background-color: #6379f4;
+          color: #fff;
+        }
+
+        &.disabled {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
 

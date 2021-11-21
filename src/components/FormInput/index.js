@@ -44,6 +44,7 @@ const FormInput = React.forwardRef(
             onKeyPress={onKeyPress}
             ref={ref}
             maxLength={maxLength}
+            autoComplete="off"
           />
           {append && (
             <div className="input-group-append">

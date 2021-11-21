@@ -1,6 +1,6 @@
 import Button from "components/Button";
-import Figure from "components/Figure";
 import FormInput from "components/FormInput";
+import { EmailSVG, EyeCrossedSVG, LockSVG } from "components/SVG";
 
 export default function FormResetPassword(props) {
   if (props.isConfirmPassword) {
@@ -21,45 +21,66 @@ export default function FormResetPassword(props) {
             </p>
           </div>
 
-          <form className="right__column--form--wrapper">
+          <form
+            className="right__column--form--wrapper"
+            onSubmit={props.onSubmit}
+          >
             <div className="form-group position-relative">
               <FormInput
                 placeholder="Create your new password"
-                inputClassName="form__input"
+                inputClassName={["form__input", props.classNewPassword].join(
+                  " "
+                )}
+                type="password"
+                value={props.password}
+                onChange={props.onChange}
+                name="newPassword"
               />
-              <Figure
-                srcImage="../../../../images/icons/icon-lock.svg"
-                altImage="Icon Lock"
+              <LockSVG
+                width="24"
+                height="24"
                 className="icon"
-                imageClass="img-cover"
+                stroke={props.strokeLock}
               />
-              <Figure
-                srcImage="../../../../images/icons/icon-eye-crossed.svg"
-                altImage="Icon Eye"
+              <EyeCrossedSVG
+                width="24"
+                height="24"
                 className="icon eye"
-                imageClass="img-cover"
+                stroke="#A9A9A9"
               />
             </div>
             <div className="form-group position-relative mb-3">
               <FormInput
                 placeholder="Confirm your new password"
-                inputClassName="form__input"
+                inputClassName={["form__input", props.classConfirm].join(" ")}
+                type="password"
+                value={props.confirm}
+                onChange={props.onChange}
+                name="confirmPassword"
               />
-              <Figure
-                srcImage="../../../../images/icons/icon-lock.svg"
-                altImage="Icon Lock"
+              <LockSVG
+                width="24"
+                height="24"
                 className="icon"
-                imageClass="img-cover"
+                stroke={props.strokeLock2}
               />
-              <Figure
-                srcImage="../../../../images/icons/icon-eye-crossed.svg"
-                altImage="Icon Eye"
+              <EyeCrossedSVG
+                width="24"
+                height="24"
                 className="icon eye"
-                imageClass="img-cover"
+                stroke="#A9A9A9"
               />
             </div>
 
-            <Button className="btn__reset">Reset Password</Button>
+            <p className="error-helpers mt-4">{props.displayError}</p>
+
+            <Button
+              className="btn btn__reset w-100"
+              isLoading={props.isLoading}
+              isDisabled={props.isDisabled}
+            >
+              Reset Password
+            </Button>
           </form>
         </div>
       </div>
@@ -84,22 +105,36 @@ export default function FormResetPassword(props) {
           </p>
         </div>
 
-        <form className="right__column--form--wrapper">
+        <p className="error-helpers">{props.displayError}</p>
+
+        <form
+          className="right__column--form--wrapper"
+          onSubmit={props.onSubmit}
+        >
           <div className="form-group position-relative">
             <FormInput
               placeholder="Enter your e-mail"
-              type="email"
-              inputClassName="form__input"
+              inputClassName={["form__input", props.formClassReset].join(" ")}
+              name="email"
+              value={props.email}
+              onChange={props.onChange}
             />
-            <Figure
-              srcImage="../../../../images/icons/icon-email.svg"
-              altImage="Icon Email"
+
+            <EmailSVG
               className="icon"
-              imageClass="img-cover"
+              width="24"
+              height="24"
+              stroke={props.stroke}
             />
           </div>
 
-          <Button className="btn__confirm">Confirm</Button>
+          <Button
+            className="btn btn__confirm w-100"
+            isLoading={props.isLoading}
+            isDisabled={props.isDisabled}
+          >
+            Confirm
+          </Button>
         </form>
       </div>
     </div>

@@ -1,0 +1,101 @@
+.amount__card {
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  padding: 1.875rem;
+  height: 678px;
+
+  &--head {
+    margin-bottom: 1.875rem;
+
+    .text__heading {
+      font-size: 1.125rem;
+      color: #3a3d42;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  .text__display--info {
+    margin-bottom: 60px;
+    color: #7a7886;
+  }
+
+  .custom__row {
+    width: 350px;
+    .form-group {
+      margin-bottom: 2.5rem;
+
+      .form__input--amount {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        text-align: center;
+        font-size: 42px;
+        font-weight: 700;
+        color: #b5bdcc;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          -moz-appearance: textfield;
+        }
+
+        &::placeholder {
+          font-size: 42px;
+          font-weight: 700;
+          color: #b5bdcc;
+          text-align: center;
+        }
+      }
+
+      input[type="number"] {
+        color: #6379f4;
+      }
+
+      .form__input--notes {
+        border-bottom-color: rgba(169, 169, 169, 0.6);
+        color: rgba(169, 169, 169, 0.8);
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          -moz-appearance: textfield;
+        }
+
+        &::placeholder {
+          color: rgba(169, 169, 169, 0.8);
+        }
+
+        &:focus {
+          border-bottom-color: #6379f4;
+        }
+      }
+
+      .text__display--amount {
+        text-align: center;
+        font-size: 1.125rem;
+        color: #3a3d42;
+        font-weight: bold;
+        margin-bottom: 0;
+      }
+    }
+
+    .text__display--amount {
+      text-align: center;
+      font-size: 1.125rem;
+      color: #3a3d42;
+      font-weight: bold;
+      margin-bottom: 3.125rem;
+    }
+  }
+
+  .btn__continue {
+    background: #6379f4;
+    box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+    border-radius: 12px;
+    padding: 0.625rem 3.125rem;
+    color: #fff;
+    font-weight: bold;
+  }
+}
