@@ -12,7 +12,7 @@
 
 
 <p align="center">
-  <img src="https://i.postimg.cc/ZYj6MWy1/dashboard-walletku.png" width="500" alt="accessibility text">
+  <img src="https://i.postimg.cc/ZYj6MWy1/dashboard-walletku.png" width="100%" alt="accessibility text">
 </p>
 
 
@@ -39,6 +39,15 @@ Website Front End ini dibangun dengan Teknologi Berikut
 * [Javascript](https://www.javascript.com/)
 * [NextJS](https://nextjs.org/)
 * [React Redux](https://react-redux.js.org/introduction/getting-started)
+* [Redux Persist](https://www.npmjs.com/package/redux-persist)
+* [Axios](https://www.npmjs.com/package/axios)
+* [ChartJS](https://www.npmjs.com/package/chartjs)
+* [js-cookie](https://www.npmjs.com/package/js-cookie)
+* [next-cookies](https://www.npmjs.com/package/next-cookies)
+* [redux-paginate](https://www.npmjs.com/package/react-paginate)
+* [react-toastify](https://www.npmjs.com/package/react-toastify)
+* [redux-promise-middleware](https://www.npmjs.com/package/redux-promise-middleware)
+* [sass](https://www.npmjs.com/package/sass)
 * [Bootstrap](https://getbootstrap.com/)
 * []
 
