@@ -20,7 +20,8 @@
 ## About The Project
 
 
-WalletKU adalah ....
+WalletKU aims to make transactions such as transfers, top up balances, which later we can make 
+transfers to other users registered on this website.
 
 ## Demo
 
@@ -31,8 +32,6 @@ Coming soon deploy
 
 
 ### Built With
-
-Website Front End ini dibangun dengan Teknologi Berikut
 
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML?retiredLocale=id)
 * [CSS](https://developer.mozilla.org/id/docs/Web/CSS)
@@ -49,7 +48,6 @@ Website Front End ini dibangun dengan Teknologi Berikut
 * [redux-promise-middleware](https://www.npmjs.com/package/redux-promise-middleware)
 * [sass](https://www.npmjs.com/package/sass)
 * [Bootstrap](https://getbootstrap.com/)
-* []
 
 
 ### Installation
