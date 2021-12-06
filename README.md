@@ -1,4 +1,4 @@
-# frontend-walletku
+# WalletKU
  
 <div id="top"></div>
 
