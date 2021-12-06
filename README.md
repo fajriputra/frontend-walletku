@@ -6,13 +6,13 @@
 <br />
 <div align="center">
   </a>
-  <h3 align="center">Get Your Job !</h3>
+  <h3 align="center">Screenshoot of project</h3>
 </div>
 
 
 
 <p align="center">
-  <img src="https://i.postimg.cc/YCYRqzXG/screencapture-localhost-3000-2021-11-22-08-55-39.png" width="350" alt="accessibility text">
+  <img src="https://i.postimg.cc/ZYj6MWy1/dashboard-walletku.png" width="500" alt="accessibility text">
 </p>
 
 
@@ -20,7 +20,7 @@
 ## About The Project
 
 
-xWallet adalah sebuah projek pembayaran digital tanpa fee yang berfungsi sebagai mempermudah orang mentransfer duit tanpa fee sama sekali !
+WalletKU adalah ....
 
 ## Demo
 
@@ -39,23 +39,22 @@ Website Front End ini dibangun dengan Teknologi Berikut
 * [Javascript](https://www.javascript.com/)
 * [NextJS](https://nextjs.org/)
 * [React Redux](https://react-redux.js.org/introduction/getting-started)
-* [Bootstarp](https://getbootstrap.com/)
+* [Bootstrap](https://getbootstrap.com/)
+* []
 
 
 ### Installation
 
-1. Clone Atau Download Repo ini:
- https://github.com/HariisV/xWallet.git
-2. Extrak File Tersebut
+1. Clone repo https://github.com/fajriputra/frontend-walletku.git
+2. Extract to folder
 3. Npm install
 4. Npm run dev
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Semua page
-- [x] Responsive Semua Page
-- [x] Flex / Grid / Grid Flex Bootstrap
+- [x] Responsive All page
+- [x] CSS Flex / CSS Grid / Grid system Bootstrap
 - [x] HTML Semantic
 - [x] Consume API 
 - [x] Deploy 
