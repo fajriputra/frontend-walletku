@@ -29,7 +29,7 @@ export default function Sidebar({ handleShow, className }) {
   };
 
   return (
-    <aside className={["home__link d-none d-md-block", className].join(" ")}>
+    <aside className={["home__link d-md-block", className].join(" ")}>
       <ul className="home__link--aside">
         <li className="home__link--aside--list">
           <Button
@@ -43,7 +43,7 @@ export default function Sidebar({ handleShow, className }) {
               height="28"
               className="home__link--aside--list--svg"
             />
-            Dashboard
+            <span className="d-none d-md-inline">Dashboard</span>
           </Button>
         </li>
         <li className="home__link--aside--list">
@@ -58,7 +58,7 @@ export default function Sidebar({ handleShow, className }) {
               height="28"
               className="home__link--aside--list--svg"
             />
-            Transfer
+            <span className="d-none d-md-inline">Transfer</span>
           </Button>
         </li>
         <li className="home__link--aside--list">
@@ -69,7 +69,7 @@ export default function Sidebar({ handleShow, className }) {
               height="28"
               className="home__link--aside--list--svg"
             />
-            Top Up
+            <span className="d-none d-md-inline">Top Up</span>
           </Button>
         </li>
         <li className="home__link--aside--list mb-0">
@@ -84,7 +84,7 @@ export default function Sidebar({ handleShow, className }) {
               height="28"
               className="home__link--aside--list--svg"
             />
-            Profile
+            <span className="d-none d-md-inline">Profile</span>
           </Button>
         </li>
         <li className="home__link--aside--list logout">
@@ -95,7 +95,7 @@ export default function Sidebar({ handleShow, className }) {
               height="28"
               className="home__link--aside--list--svg"
             />
-            Logout
+            <span className="d-none d-md-inline">Logout</span>
           </Button>
         </li>
       </ul>
