@@ -9,12 +9,12 @@ import cookie from "js-cookie";
 import LeftColumn from "components/Auth/LeftColumn";
 import RightColumn from "components/Auth/RightColumn";
 import Layout from "components/Layout";
+import { toast } from "react-toastify";
 
 const initialState = {
   email: "",
   password: "",
   error: "",
-  success: "",
 };
 
 export async function getServerSideProps(context) {
@@ -51,9 +51,7 @@ export default function Signin(props) {
 
     dispatch(userLogin({ email, password }))
       .then((res) => {
-        setUser({ ...user, error: "", success: res.value.data.msg });
-
-        dispatch(getUserById(res.value.data.data.id));
+        toast.success(res.value.data.msg);
 
         cookie.set("token", res.value.data.data.token);
         cookie.set("id", res.value.data.data.id);
@@ -63,6 +61,8 @@ export default function Signin(props) {
         } else {
           router.push("/create-pin");
         }
+
+        dispatch(getUserById(res.value.data.data.id));
       })
       .catch((err) => {
         err.response.data.msg &&

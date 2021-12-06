@@ -1,4 +1,5 @@
 @import "assets/scss/bootstrap.scss";
+@import "react-toastify/dist/ReactToastify.css";
 @import "form-input";
 @import "header";
 @import "site-info";
@@ -18,3 +19,9 @@
 @import "search-receiver";
 @import "amount";
 @import "confirmation";
+@import "profile";
+@import "personal-information";
+@import "change-password";
+@import "change-pin";
+@import "add-phone";
+@import "manage-phone";

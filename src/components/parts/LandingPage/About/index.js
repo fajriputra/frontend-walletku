@@ -1,4 +1,5 @@
 import Figure from "components/Figure";
+import { DownloadSVG, LockSVG, PhoneSVG } from "components/SVG";
 import React from "react";
 
 export default function About(props) {
@@ -22,11 +23,9 @@ export default function About(props) {
           <div className="about__content--inner">
             <div className="about__content--inner--card">
               <div className="about__content--inner--card--content">
-                <Figure
-                  srcImage="../../../../../images/icons/icon-phone-vector.svg"
-                  altImage="Phone SVG"
-                  className="about__content--inner--card--content--image rounded-circle"
-                />
+                <div className="about__content--inner--card--content--image rounded-circle">
+                  <PhoneSVG width="25" height="25" stroke="#6379F4" />
+                </div>
 
                 <h5>24/7 Support</h5>
                 <p>
@@ -35,11 +34,9 @@ export default function About(props) {
                 </p>
               </div>
               <div className="about__content--inner--card--content">
-                <Figure
-                  srcImage="../../../../../images/icons/icon-lock-vector.svg"
-                  altImage="Phone SVG"
-                  className="about__content--inner--card--content--image rounded-circle"
-                />
+                <div className="about__content--inner--card--content--image rounded-circle">
+                  <LockSVG width="25" height="25" stroke="#6379F4" />
+                </div>
 
                 <h5>Data Privacy</h5>
                 <p>
@@ -48,11 +45,9 @@ export default function About(props) {
                 </p>
               </div>
               <div className="about__content--inner--card--content mb-0">
-                <Figure
-                  srcImage="../../../../../images/icons/icon-download-vector.svg"
-                  altImage="Phone SVG"
-                  className="about__content--inner--card--content--image rounded-circle"
-                />
+                <div className="about__content--inner--card--content--image rounded-circle">
+                  <DownloadSVG width="25" height="25" stroke="#6379F4" />
+                </div>
 
                 <h5>Easy Download</h5>
                 <p>

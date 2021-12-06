@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import LeftColumn from "components/Auth/LeftColumn";
 import RightColumn from "components/Auth/RightColumn";
 import Layout from "components/Layout";
+import { toast } from "react-toastify";
 
 const initialState = {
   keysChangePassword: "",
@@ -43,11 +44,13 @@ export default function ConfirmPassword(props) {
         return setStatus(statusList.idle);
       }
 
-      await axios.patch(`/auth/reset-password`, {
+      const res = await axios.patch(`/auth/reset-password`, {
         keysChangePassword: router.query.id,
         newPassword,
         confirmPassword,
       });
+
+      toast.success(res.data.msg);
 
       router.push("/signin");
 

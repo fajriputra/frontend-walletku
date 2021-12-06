@@ -18,12 +18,14 @@
         color: #3a3d42;
       }
 
-      .dropdown__toggle {
+      .form-select {
         padding: 0.5rem 1.75rem;
         background: rgba(58, 61, 66, 0.1);
         border-radius: 12px;
-        font-size: 0.8125rem;
         color: #000;
+        border: none;
+        outline: none;
+        width: 155px;
       }
     }
   }

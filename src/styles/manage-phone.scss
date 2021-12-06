@@ -1,0 +1,58 @@
+.manage__phone--card {
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  padding: 1.875rem;
+  height: 678px;
+
+  &--head {
+    margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    span.back {
+      color: #6379f4;
+      font-size: 1.125rem;
+      cursor: pointer;
+    }
+
+    h5 {
+      font-size: 1.125rem;
+      color: #3a3d42;
+      font-weight: bold;
+      margin-bottom: 1.5625rem;
+    }
+
+    p {
+      color: #7a7886;
+      line-height: 1.75rem;
+    }
+  }
+
+  &--body {
+    &--inner {
+      background: #ffffff;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+      padding: 0.9375rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &.wrap {
+        p {
+          margin-bottom: 0.625rem;
+          color: #7a7886;
+        }
+
+        h5 {
+          margin-bottom: 0;
+          color: #514f5b;
+          font-weight: bold;
+          font-size: 1.375rem;
+        }
+      }
+    }
+  }
+}

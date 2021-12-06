@@ -1,6 +1,20 @@
 import Layout from "components/Layout";
 import TransactionHistory from "components/parts/Home/Dashboard/TransactionHistory";
 import Sidebar from "components/Sidebar";
+import { getDataCookie } from "middlewares/authorizationPage";
+
+export async function getServerSideProps(context) {
+  const dataCookie = await getDataCookie(context);
+  if (!dataCookie.isLogin) {
+    return {
+      redirect: {
+        destination: "/signin",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
+}
 
 export default function History(props) {
   return (

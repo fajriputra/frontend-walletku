@@ -182,6 +182,12 @@ export default function RightColumn(props) {
         isLoading={props.isLoading}
         isDisabled={props.isDisabled}
         classPin={props.classPin}
+        pin1={props.pin1}
+        pin2={props.pin2}
+        pin3={props.pin3}
+        pin4={props.pin4}
+        pin5={props.pin5}
+        pin6={props.pin6}
       />
     );
   }

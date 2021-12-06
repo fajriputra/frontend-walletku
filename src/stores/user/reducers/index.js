@@ -1,7 +1,8 @@
-import { GET_USERBY_ID } from "../constans";
+import { GET_ALL_USER, GET_USERBY_ID } from "../constans";
 
 const initialState = {
-  data: {},
+  allUser: [],
+  userById: {},
   isError: "",
   isLoading: false,
   msg: "",
@@ -9,10 +10,39 @@ const initialState = {
 
 const user = (state = initialState, action) => {
   switch (action.type) {
+    case `${GET_ALL_USER}_PENDING`: {
+      return {
+        ...state,
+        allUser: [],
+        isError: false,
+        isLoading: true,
+      };
+    }
+
+    case `${GET_ALL_USER}_FULFILLED`: {
+      return {
+        ...state,
+        isError: false,
+        isLoading: false,
+        allUser: action.payload.data.data,
+        msg: action.payload.data.msg,
+      };
+    }
+
+    case `${GET_ALL_USER}_REJECTED`: {
+      return {
+        ...state,
+        isError: true,
+        isLoading: false,
+        allUser: [],
+        msg: action.payload.response.data.msg,
+      };
+    }
+
     case `${GET_USERBY_ID}_PENDING`: {
       return {
         ...state,
-        data: {},
+        userById: {},
         isError: false,
         isLoading: true,
       };
@@ -23,7 +53,7 @@ const user = (state = initialState, action) => {
         ...state,
         isError: false,
         isLoading: false,
-        data: action.payload.data.data,
+        userById: action.payload.data.data,
         msg: action.payload.data.msg,
       };
     }
@@ -33,7 +63,7 @@ const user = (state = initialState, action) => {
         ...state,
         isError: true,
         isLoading: false,
-        data: {},
+        userById: {},
         msg: action.payload.response.data.msg,
       };
     }

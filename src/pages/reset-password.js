@@ -5,6 +5,7 @@ import { getDataCookie } from "middlewares/authorizationPage";
 import LeftColumn from "components/Auth/LeftColumn";
 import RightColumn from "components/Auth/RightColumn";
 import Layout from "components/Layout";
+import { toast } from "react-toastify";
 
 const initialState = {
   email: "",
@@ -48,10 +49,12 @@ export default function ResetPassword(props) {
 
     setStatus(statusList.process);
     try {
-      await axios.post("/auth/forgot-password", {
+      const res = await axios.post("/auth/forgot-password", {
         email,
         linkDirect,
       });
+
+      toast.success(res.data.msg);
 
       setForm(initialState);
       setStatus(statusList.error);

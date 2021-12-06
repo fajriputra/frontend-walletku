@@ -67,6 +67,7 @@ export default function FormCreatePin(props) {
                   maxLength="1"
                   inputClassName={["form__input pin", props.classPin].join(" ")}
                   onChange={props.onChange}
+                  value={props.pin1}
                   id="pin-1"
                   name="1"
                 />
@@ -74,6 +75,7 @@ export default function FormCreatePin(props) {
                   maxLength="1"
                   inputClassName={["form__input pin", props.classPin].join(" ")}
                   onChange={props.onChange}
+                  value={props.pin2}
                   id="pin-2"
                   name="2"
                 />
@@ -81,6 +83,7 @@ export default function FormCreatePin(props) {
                   maxLength="1"
                   inputClassName={["form__input pin", props.classPin].join(" ")}
                   onChange={props.onChange}
+                  value={props.pin3}
                   id="pin-3"
                   name="3"
                 />
@@ -88,6 +91,7 @@ export default function FormCreatePin(props) {
                   maxLength="1"
                   inputClassName={["form__input pin", props.classPin].join(" ")}
                   onChange={props.onChange}
+                  value={props.pin4}
                   id="pin-4"
                   name="4"
                 />
@@ -95,6 +99,7 @@ export default function FormCreatePin(props) {
                   maxLength="1"
                   inputClassName={["form__input pin", props.classPin].join(" ")}
                   onChange={props.onChange}
+                  value={props.pin5}
                   id="pin-5"
                   name="5"
                 />
@@ -102,6 +107,7 @@ export default function FormCreatePin(props) {
                   maxLength="1"
                   inputClassName={["form__input pin", props.classPin].join(" ")}
                   onChange={props.onChange}
+                  value={props.pin6}
                   id="pin-6"
                   name="6"
                 />
@@ -131,6 +137,7 @@ export default function FormCreatePin(props) {
               maxLength="1"
               inputClassName={["form__input pin", props.classPin].join(" ")}
               onChange={props.onChange}
+              value={props.pin1}
               id="pin-1"
               name="1"
             />
@@ -138,6 +145,7 @@ export default function FormCreatePin(props) {
               maxLength="1"
               inputClassName={["form__input pin", props.classPin].join(" ")}
               onChange={props.onChange}
+              value={props.pin2}
               id="pin-2"
               name="2"
             />
@@ -145,6 +153,7 @@ export default function FormCreatePin(props) {
               maxLength="1"
               inputClassName={["form__input pin", props.classPin].join(" ")}
               onChange={props.onChange}
+              value={props.pin3}
               id="pin-3"
               name="3"
             />
@@ -152,6 +161,7 @@ export default function FormCreatePin(props) {
               maxLength="1"
               inputClassName={["form__input pin", props.classPin].join(" ")}
               onChange={props.onChange}
+              value={props.pin4}
               id="pin-4"
               name="4"
             />
@@ -159,6 +169,7 @@ export default function FormCreatePin(props) {
               maxLength="1"
               inputClassName={["form__input pin", props.classPin].join(" ")}
               onChange={props.onChange}
+              value={props.pin5}
               id="pin-5"
               name="5"
             />
@@ -166,20 +177,13 @@ export default function FormCreatePin(props) {
               maxLength="1"
               inputClassName={["form__input pin", props.classPin].join(" ")}
               onChange={props.onChange}
+              value={props.pin6}
               id="pin-6"
               name="6"
             />
           </div>
 
           <p className="error-helpers">{props.displayError}</p>
-
-          <Button
-            className={["btn btn__confirm w-100", props.classSubmit].join(" ")}
-            isLoading={props.isLoading}
-            isDisabled={props.isDisabled}
-          >
-            Confirm
-          </Button>
         </form>
       )}
     </>

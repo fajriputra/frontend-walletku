@@ -1,12 +1,17 @@
 .dashboard {
   &__balance--card {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 1.875rem;
     background-color: #6379f4;
     border-radius: 1.25rem;
     margin-bottom: 2.5rem;
+    flex-flow: column;
+
+    @media (min-width: 768px) {
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+    }
 
     &--text {
       .text__balance {
@@ -26,7 +31,11 @@
         font-size: 0.875rem;
         color: #dfdcdc;
         font-weight: 600;
-        margin-bottom: 0;
+        margin-bottom: 1.25rem;
+
+        @media (min-width: 768px) {
+          margin-bottom: 0;
+        }
       }
     }
 
@@ -44,8 +53,23 @@
         padding: 0.75rem 1.75rem;
         background: rgba(255, 255, 255, 0.2);
         border: 1px solid #ffffff;
-        border-radius: 10px;
+        border-radius: 0.625rem;
+        justify-content: center;
+
+        @media (min-width: 768px) {
+          justify-content: start;
+        }
       }
+    }
+  }
+
+  &__history--card,
+  &__statistic--card {
+    overflow-y: auto;
+    height: 455px;
+
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 
@@ -53,8 +77,13 @@
   &__history--card {
     background-color: #fff;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
-    border-radius: 25px;
+    border-radius: 1.5625rem;
     padding: 1.875rem;
+    margin-bottom: 1.875rem;
+
+    @media (min-width: 768px) {
+      margin-bottom: 0;
+    }
 
     &--head,
     &--head {

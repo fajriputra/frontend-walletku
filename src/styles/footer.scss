@@ -1,7 +1,10 @@
 .footer__home {
   background-color: #6379f4;
   border-top: none;
-  padding: 1.875rem 100px !important;
+
+  @media (min-width: 768px) {
+    padding: 1.875rem 100px !important;
+  }
 }
 
 .footer {

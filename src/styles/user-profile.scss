@@ -6,7 +6,14 @@
 
   .text__amount--transaction {
     margin-bottom: 0;
-    color: #1ec15f;
+
+    &.transfer {
+      color: #ff5b37;
+    }
+
+    &.topup {
+      color: #1ec15f;
+    }
   }
 
   &.card__shadow {

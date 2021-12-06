@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import axios from "helpers/axios";
 
 import { getDataCookie } from "middlewares/authorizationPage";
 import LeftColumn from "components/Auth/LeftColumn";
 import RightColumn from "components/Auth/RightColumn";
 import Layout from "components/Layout";
+import { toast } from "react-toastify";
 
 const initialState = {
   firstName: "",
@@ -28,7 +30,7 @@ export async function getServerSideProps(context) {
   if (dataCookie.isLogin) {
     return {
       redirect: {
-        destination: "/signin",
+        destination: "/dashboard",
         permanent: false,
       },
     };
@@ -39,6 +41,8 @@ export async function getServerSideProps(context) {
 export default function Signup(props) {
   const [user, setUser] = useState(initialState);
   const [status, setStatus] = useState(statusList.idle);
+
+  const router = useRouter();
 
   const { firstName, lastName, email, password, confirmation_password } = user;
 
@@ -51,6 +55,11 @@ export default function Signup(props) {
     e.preventDefault();
     setStatus(statusList.process);
     try {
+      if (password !== confirmation_password) {
+        setUser({ ...user, error: "Password doesn't matches" });
+        return setStatus(statusList.idle);
+      }
+
       const res = await axios.post("/auth/register", {
         firstName,
         lastName,
@@ -59,10 +68,11 @@ export default function Signup(props) {
         confirmation_password,
       });
 
-      // toast
-      console.log(res);
+      toast.success(res.data.msg);
 
       setUser(initialState);
+
+      router.push("/signin");
 
       setStatus(statusList.error);
     } catch (err) {

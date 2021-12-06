@@ -40,6 +40,77 @@ export const GridSVG = (props) => {
   );
 };
 
+export const ArrowRightSVG = (props) => {
+  return (
+    <svg
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 28 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={props.className}
+    >
+      <path
+        d="M5.83366 14L22.167 14"
+        stroke={props.stroke} // #7E7D84
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14.0003 5.83365L22.167 14.0003L14.0003 22.167"
+        stroke={props.stroke}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const PhoneSVG = (props) => {
+  return (
+    <svg
+      width={props.width}
+      height={props.height}
+      className={props.className}
+      viewBox="0 0 30 30"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M27.4998 21.1501V24.9001C27.5012 25.2482 27.4299 25.5928 27.2904 25.9118C27.151 26.2308 26.9464 26.5171 26.6899 26.7525C26.4334 26.9878 26.1305 27.167 25.8007 27.2785C25.4709 27.39 25.1215 27.4315 24.7748 27.4001C20.9283 26.9822 17.2335 25.6678 13.9873 23.5626C10.9671 21.6435 8.40646 19.0828 6.48729 16.0626C4.37477 12.8016 3.0601 9.08886 2.64979 5.22512C2.61856 4.87945 2.65964 4.53107 2.77042 4.20215C2.8812 3.87323 3.05926 3.57098 3.29325 3.31465C3.52725 3.05831 3.81205 2.85351 4.12953 2.71327C4.44702 2.57304 4.79022 2.50045 5.13729 2.50012H8.88729C9.49393 2.49415 10.082 2.70897 10.542 3.10454C11.002 3.5001 11.3024 4.04943 11.3873 4.65012C11.5456 5.8502 11.8391 7.02853 12.2623 8.16262C12.4305 8.61003 12.4669 9.09626 12.3672 9.56372C12.2675 10.0312 12.0359 10.4603 11.6998 10.8001L10.1123 12.3876C11.8917 15.5171 14.4829 18.1082 17.6123 19.8876L19.1998 18.3001C19.5397 17.964 19.9687 17.7324 20.4362 17.6327C20.9037 17.533 21.3899 17.5694 21.8373 17.7376C22.9714 18.1608 24.1497 18.4543 25.3498 18.6126C25.957 18.6983 26.5115 19.0041 26.908 19.472C27.3044 19.9399 27.515 20.5371 27.4998 21.1501Z"
+        stroke={props.stroke}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const TrashSVG = (props) => {
+  return (
+    <svg
+      width={props.width}
+      height={props.height}
+      className={props.className}
+      onClick={props.onClick}
+      viewBox="0 0 20 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5.33398 5.99967V3.66634C5.33398 3.0475 5.57982 2.45401 6.0174 2.01643C6.45499 1.57884 7.04848 1.33301 7.66732 1.33301H12.334C12.9528 1.33301 13.5463 1.57884 13.9839 2.01643C14.4215 2.45401 14.6673 3.0475 14.6673 3.66634V5.99967M18.1673 5.99967V22.333C18.1673 22.9518 17.9215 23.5453 17.4839 23.9829C17.0463 24.4205 16.4528 24.6663 15.834 24.6663H4.16732C3.54848 24.6663 2.95499 24.4205 2.5174 23.9829C2.07982 23.5453 1.83398 22.9518 1.83398 22.333V5.99967H18.1673Z"
+        stroke={props.stroke} // #BBBBBE
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
 export const ArrowUpSVG = (props) => {
   return (
     <svg
@@ -384,6 +455,35 @@ export const DownloadSVG = (props) => {
         d="M15 18.75V3.75"
         stroke="#6379F4"
         strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const CloseSVG = (props) => {
+  return (
+    <svg
+      width={props.width}
+      height={props.height}
+      className={props.className}
+      onClick={props.onClick}
+      viewBox="0 0 42 42"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M31.5 10.5L10.5 31.5"
+        stroke={props.stroke}
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.5 10.5L31.5 31.5"
+        stroke={props.stroke}
+        strokeWidth="4"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

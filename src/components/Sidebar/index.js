@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
+import axios from "helpers/axios";
+import cookie from "js-cookie";
 
 import Button from "components/Button";
 import {
@@ -10,15 +12,24 @@ import {
   PlusSVG,
 } from "components/SVG";
 
-export default function Sidebar(props) {
+export default function Sidebar({ handleShow, className }) {
   const router = useRouter();
 
   const activeClass = (path) => {
     return router.pathname === path ? " active" : "";
   };
 
+  const handleLogout = () => {
+    axios.post("/auth/logout").then(() => {
+      cookie.remove("id");
+      cookie.remove("token");
+
+      window.location.href = "/";
+    });
+  };
+
   return (
-    <aside className="home__link">
+    <aside className={["home__link d-none d-md-block", className].join(" ")}>
       <ul className="home__link--aside">
         <li className="home__link--aside--list">
           <Button
@@ -51,10 +62,7 @@ export default function Sidebar(props) {
           </Button>
         </li>
         <li className="home__link--aside--list">
-          <Button
-            className="btn btn__sidebar--link"
-            // onClick={toggleActive}
-          >
+          <Button className="btn btn__sidebar--link" onClick={handleShow}>
             <PlusSVG
               stroke="#3A3D42"
               width="28"
@@ -80,7 +88,7 @@ export default function Sidebar(props) {
           </Button>
         </li>
         <li className="home__link--aside--list logout">
-          <Button className="btn btn__sidebar--link">
+          <Button className="btn btn__sidebar--link" onClick={handleLogout}>
             <LogoutSVG
               stroke="#3A3D42"
               width="28"

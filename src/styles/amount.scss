@@ -17,12 +17,19 @@
   }
 
   .text__display--info {
-    margin-bottom: 60px;
+    margin-bottom: 1.25rem;
     color: #7a7886;
+
+    @media (min-width: 768px) {
+      margin-bottom: 60px;
+    }
   }
 
   .custom__row {
-    width: 350px;
+    @media (min-width: 768px) {
+      width: 350px;
+    }
+
     .form-group {
       margin-bottom: 2.5rem;
 
@@ -50,7 +57,13 @@
       }
 
       input[type="number"] {
-        color: #6379f4;
+        &.current {
+          color: #6379f4;
+        }
+
+        &.active {
+          color: #ff5b37;
+        }
       }
 
       .form__input--notes {

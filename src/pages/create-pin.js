@@ -1,24 +1,32 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import axios from "helpers/axios";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import axios from "helpers/axios";
+import { getDataCookie } from "middlewares/authorizationPage";
 
 import LeftColumn from "components/Auth/LeftColumn";
 import RightColumn from "components/Auth/RightColumn";
 import Layout from "components/Layout";
 
-const statusList = {
-  idle: "idle",
-  process: "process",
-  success: "success",
-  error: "error",
-};
+export async function getServerSideProps(context) {
+  const dataCookie = await getDataCookie(context);
+  if (dataCookie.isLogin) {
+    return {
+      redirect: {
+        destination: "/dashboard",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
+}
 
 export default function CreatePin(props) {
   const [pin, setPin] = useState({});
   const [error, setError] = useState("");
-  const [status, setStatus] = useState(statusList.idle);
-  const { data } = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
+  const { userById } = useSelector((state) => state.user);
 
   const router = useRouter();
 
@@ -36,30 +44,53 @@ export default function CreatePin(props) {
     setPin({ ...pin, [`pin${e.target.name}`]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus(statusList.process);
-    try {
-      const allPin =
-        pin.pin1 + pin.pin2 + pin.pin3 + pin.pin4 + pin.pin5 + pin.pin6;
+    setLoading(true);
 
-      const setData = {
-        pin: allPin,
-      };
+    const allPin =
+      pin.pin1 + pin.pin2 + pin.pin3 + pin.pin4 + pin.pin5 + pin.pin6;
 
-      await axios.patch(`/user/pin/${data.id}`, setData);
+    const setData = {
+      pin: allPin,
+    };
 
-      router.push("/dashboard");
+    axios
+      .patch(`/user/pin/${userById.id}`, setData)
+      .then((res) => {
+        toast.success(res.data.msg);
 
-      setStatus(statusList.error);
-    } catch (err) {
-      err.response.data.msg && setError(err.response.data.msg);
+        router.push("/dashboard");
+      })
+      .catch((err) => {
+        err.response.data.msg && setError(err.response.data.msg);
 
-      setTimeout(() => {
-        setError("");
-      }, 3000);
-    }
-    setStatus(statusList.success);
+        setTimeout(() => {
+          setError("");
+        }, 3000);
+
+        setPin({
+          ...pin,
+          pin1: "",
+          pin2: "",
+          pin3: "",
+          pin4: "",
+          pin5: "",
+          pin6: "",
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+        setPin({
+          ...pin,
+          pin1: "",
+          pin2: "",
+          pin3: "",
+          pin4: "",
+          pin5: "",
+          pin6: "",
+        });
+      });
   };
 
   const isDisabled = Object.values(pin).length > 0 && true;
@@ -78,8 +109,14 @@ export default function CreatePin(props) {
               onChange={(e) => addPin(e)}
               classSubmit={pin && isDisabled ? " active" : ""}
               isDisabled={!isDisabled}
-              isLoading={status === statusList.process}
+              isLoading={loading}
               displayError={error}
+              pin1={pin.pin1}
+              pin2={pin.pin2}
+              pin3={pin.pin3}
+              pin4={pin.pin4}
+              pin5={pin.pin5}
+              pin6={pin.pin6}
             />
           </div>
         </div>

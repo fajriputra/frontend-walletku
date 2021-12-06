@@ -92,6 +92,16 @@ section {
   object-fit: contain;
 }
 
+.btn:focus,
+.btn:visited,
+.page-item:focus,
+.page-item:visited,
+.form-select:focus,
+.form-select:visited {
+  box-shadow: none;
+  outline: none;
+}
+
 .icon__check--success {
   background-color: #1ec15f;
   width: 70px;
@@ -121,5 +131,76 @@ section {
     font-size: 1.875rem;
     color: #6379f4;
     font-weight: 700;
+  }
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  padding: 4vw;
+
+  .modal__wrapper {
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+
+    @media (min-width: 768px) {
+      width: 500px;
+      height: 415px;
+    }
+
+    &--content {
+      &--head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.25rem;
+
+        &--text {
+          font-weight: 700;
+          color: #3a3d42;
+          font-size: 1.125rem;
+          margin-bottom: 0;
+        }
+      }
+
+      &--display {
+        line-height: 1.875rem;
+        color: rgba(58, 61, 66, 0.6);
+        margin-bottom: 2.5rem;
+      }
+
+      .top-up {
+        border: 1px solid rgba(169, 169, 169, 0.6) !important;
+        box-shadow: 0px 0.625rem 75px rgb(147 147 147 / 10%) !important;
+        border-radius: 0.625rem !important;
+        height: 3.125rem !important;
+        text-align: center;
+        font-size: 1.75rem;
+        font-weight: bold;
+        color: #b5bdcc;
+      }
+
+      .btn__continue {
+        background-color: #6379f4;
+        box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+        border-radius: 0.5rem;
+        border: none;
+        outline: none;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #fff;
+        padding: 0.75rem 2.5rem;
+      }
+    }
   }
 }

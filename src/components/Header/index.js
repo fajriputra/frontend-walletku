@@ -10,7 +10,7 @@ import Figure from "components/Figure";
 export default function Header(props) {
   const isLoggedin = cookie.get("token");
 
-  const { data } = useSelector((state) => state.user);
+  const { userById } = useSelector((state) => state.user);
 
   return (
     <header className={["header", props.className].join(" ")}>
@@ -25,11 +25,11 @@ export default function Header(props) {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               {isLoggedin ? (
                 <UserProfile
-                  name={`${data.firstName} ${data.lastName}`}
-                  sub={data.noTelp ? data.noTelp : null}
+                  name={`${userById.firstName} ${userById.lastName}`}
+                  sub={userById.noTelp ? `+62${userById.noTelp}` : ""}
                   imageSrc={
-                    data.image
-                      ? `${process.env.REACT_APP_API_HOST}/uploads/${data.image}`
+                    userById.image
+                      ? `${process.env.API_HOST}/uploads/${userById.image}`
                       : "../../../images/default.png"
                   }
                 >

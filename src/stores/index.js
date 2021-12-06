@@ -6,6 +6,9 @@ import promiseMiddleware from "redux-promise-middleware";
 
 import authReducers from "stores/auth/reducers";
 import userReducers from "stores/user/reducers";
+import topupReducers from "stores/topup/reducers";
+import dashboardReducers from "stores/dashboard/reducers";
+import historyReducers from "stores/history/reducers";
 
 const persistConfig = {
   key: "root",
@@ -15,6 +18,9 @@ const persistConfig = {
 const rootReducers = combineReducers({
   auth: authReducers,
   user: userReducers,
+  topup: topupReducers,
+  dashboard: dashboardReducers,
+  history: historyReducers,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
