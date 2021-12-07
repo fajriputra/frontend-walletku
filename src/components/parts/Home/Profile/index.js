@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ArrowRightSVG, PencilSVG } from "components/SVG";
+import { ArrowRightSVG, PencilSVG, TrashSVG } from "components/SVG";
 import Button from "components/Button";
 import Figure from "components/Figure";
 import axios from "helpers/axios";
@@ -12,19 +12,8 @@ export default function Profile(props) {
   const target = useRef(null);
 
   const { userById } = useSelector((state) => state.user);
-  // const [data, setData] = useState({
-  //   image: null,
-  // });
-  const [image, setImage] = useState({ image: null });
 
-  // useEffect(() => {
-  //   dispatch(getUserById(userById.id)).then((res) => {
-  //     setData({
-  //       ...data,
-  //       image: res.value.data.data.image,
-  //     });
-  //   });
-  // }, []);
+  const [image, setImage] = useState({ image: null });
 
   const handleImage = () => {
     if (!image.image) {
@@ -48,6 +37,22 @@ export default function Profile(props) {
     }
   };
 
+  const deleteImage = () => {
+    const confirm = window.confirm("Are you sure want to delete this photo?");
+
+    if (confirm)
+      axios
+        .delete(`/user/image/${userById.id}`)
+        .then((res) => {
+          toast.success(res.data.msg);
+
+          dispatch(getUserById(userById.id));
+        })
+        .catch((err) => {
+          err.response.data.msg && toast.error(err.response.data.msg);
+        });
+  };
+
   useEffect(() => {
     handleImage();
   }, [image]);
@@ -55,7 +60,7 @@ export default function Profile(props) {
   return (
     <div className="profile__card">
       <div className="profile__card--content">
-        <div className="profile__card--content--head">
+        <div className="profile__card--content--head mx-auto mx-md-0">
           <div className="wrapper__image">
             <Figure
               srcImage={
@@ -75,6 +80,25 @@ export default function Profile(props) {
               style={{ display: "none" }}
               onChange={(e) => setImage({ image: e.target.files[0] })}
             />
+
+            {userById.image && (
+              <div
+                className="d-flex justify-content-center align-items-center p-2 icon-trash rounded-circle"
+                style={{
+                  backgroundColor: "#FF5B37",
+                  width: 30,
+                  height: 30,
+                  cursor: "pointer",
+                }}
+              >
+                <TrashSVG
+                  width="20"
+                  height="20"
+                  stroke="white"
+                  onClick={deleteImage}
+                />
+              </div>
+            )}
           </div>
 
           <Button

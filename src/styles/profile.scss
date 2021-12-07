@@ -20,6 +20,7 @@
       align-items: center;
       flex-flow: column;
       margin-bottom: 3.125rem;
+      position: relative;
 
       &--image {
         width: 80px;
@@ -30,6 +31,12 @@
         .border-inherit {
           border-radius: inherit;
         }
+      }
+
+      .icon-trash {
+        position: absolute;
+        top: -15px;
+        right: 15px;
       }
 
       .btn__edit {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import axios from "helpers/axios";
 import Button from "components/Button";
 import Layout from "components/Layout";
 import Modal from "components/Modal";
@@ -13,7 +13,7 @@ import { formatRp } from "helpers/formatRp";
 import { topUp } from "stores/topup/actions";
 import { toast } from "react-toastify";
 import { getUserById } from "stores/user/actions";
-import { getDashboard } from "stores/dashboard/actions";
+
 import { getDataTransaction } from "stores/history/actions";
 import { getDataCookie } from "middlewares/authorizationPage";
 
@@ -27,10 +27,28 @@ export async function getServerSideProps(context) {
       },
     };
   }
-  return { props: {} };
+
+  const getDashboard = await axios
+    .get(`/dashboard/${dataCookie.id}`, {
+      headers: {
+        Authorization: `Bearer ${dataCookie.token}`,
+      },
+    })
+    .then((res) => {
+      return res.data.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return {
+    props: {
+      data: { dataCookie, getDashboard },
+    },
+  };
 }
 
-const stateAmount = {
+export const stateAmount = {
   amount: "",
 };
 
@@ -42,26 +60,25 @@ const stateTransaction = {
 };
 
 export default function Dashboard(props) {
-  const [handleShowHistory, setHandleShowHistory] = useState(false);
+  const dispatch = useDispatch();
+
+  const dashboard = props.data.getDashboard;
 
   const [amount, setAmount] = useState(stateAmount);
   const [transaction, setTransaction] = useState(stateTransaction);
-
   const [showModal, setShowModal] = useState(false);
+
   const openModal = () => setShowModal(!showModal);
   const closeModal = () => setShowModal(false);
 
-  const dispatch = useDispatch();
+  const [handleShowHistory, setHandleShowHistory] = useState(false);
+  const handleShowClick = () => setHandleShowHistory(!handleShowHistory);
 
   const topup = useSelector((state) => state.topup);
   const { userById } = useSelector((state) => state.user);
-  const dashboard = useSelector((state) => state.dashboard);
-
-  const handleShowClick = () => setHandleShowHistory(!handleShowHistory);
 
   useEffect(() => {
     dispatch(getUserById(userById.id));
-    dispatch(getDashboard(userById.id));
     dispatch(
       getDataTransaction(
         transaction.page,
@@ -138,7 +155,7 @@ export default function Dashboard(props) {
 
                   <div className="row">
                     <div className="col-12 col-lg-7">
-                      <Statistic data={dashboard.data} />
+                      <Statistic data={dashboard} />
                     </div>
 
                     <div className="col-12 col-lg-5">

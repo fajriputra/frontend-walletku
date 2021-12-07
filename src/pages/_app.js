@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Component {...pageProps} />
-          <ToastContainer autoClose={3000} pauseOnHover={false} />
+          <ToastContainer autoClose={2000} pauseOnHover={false} />
         </PersistGate>
       </Provider>
     </>

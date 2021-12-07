@@ -66,7 +66,7 @@ export default function Amount(props) {
                 marginBottom: 0,
               }}
             >
-              Minimum {formatRp(1000)} to transfer
+              Minimum {formatRp(10000)} to transfer
             </p>
           )}
         </div>

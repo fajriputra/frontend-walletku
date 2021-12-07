@@ -3,7 +3,10 @@
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 25px;
   padding: 1.875rem;
-  height: 678px;
+
+  @media (min-width: 992px) {
+    height: 678px;
+  }
 
   &--head {
     margin-bottom: 2.5rem;

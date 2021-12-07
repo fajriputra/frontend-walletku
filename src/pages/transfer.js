@@ -161,8 +161,8 @@ export default function Transfer(props) {
         return toast.error("Please make a notes to transfer");
       } else if (stringPattern(data.notes)) {
         return toast.error("Notes can't be white space");
-      } else if (data.amount < 1000) {
-        return toast.error(`Minimum ${formatRp(1000)} to transfer`);
+      } else if (data.amount < 10000) {
+        return toast.error(`Minimum ${formatRp(10000)} to transfer`);
       } else if (data.amount > userById.balance) {
         return toast.error("Not enought amount");
       }
@@ -282,14 +282,14 @@ export default function Transfer(props) {
                   classAmount={
                     data.amount === null
                       ? "current"
-                      : data.amount < 1000
+                      : data.amount < 10000
                       ? "active"
                       : "current"
                   }
                   underValue={
                     data.amount === null
                       ? false
-                      : data.amount < 1000
+                      : data.amount < 10000
                       ? true
                       : false
                   }

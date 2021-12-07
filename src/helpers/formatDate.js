@@ -2,7 +2,7 @@ export const formatDate = (date) => {
   const parse = new Date(date);
 
   const nol = parse.getMinutes() < 10 ? 0 : "";
-  let hours = parse.getHours();
+  const hours = parse.getHours();
 
   const ampm = hours >= 12 ? "PM" : "AM";
 
