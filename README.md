@@ -1,4 +1,4 @@
-<h5 align="center">WalletKU</h5>
+<h1 align="center">WalletKU</h1>
  
 <div id="top"></div>
 
