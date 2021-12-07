@@ -1,16 +1,8 @@
-# WalletKU
+<h5 align="center">WalletKU</h5>
  
 <div id="top"></div>
 
 <!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  </a>
-  <h3 align="center">Screenshoot of project</h3>
-</div>
-
-
-
 <p align="center">
   <img src="https://i.postimg.cc/ZYj6MWy1/dashboard-walletku.png" width="100%" alt="accessibility text">
 </p>
@@ -25,7 +17,7 @@ transfers to other users registered on this website.
 
 ## Demo
 
-Coming soon deploy
+You can visit on this [link](https://walletku.vercel.app) to see demo project
  
 <!-- ## :blue_book: Documentation -->
 
