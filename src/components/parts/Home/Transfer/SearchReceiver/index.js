@@ -9,7 +9,7 @@ import { getAllUser } from "stores/user/actions";
 
 const initialState = {
   page: 1,
-  limit: 5,
+  limit: 3,
   search: "",
   sort: "firstName ASC",
 };
@@ -22,6 +22,8 @@ export default function SearchReceiver({ data, onClick }) {
   const [filtered, setFiltered] = useState(data);
 
   const { pageInfo } = useSelector((state) => state.history);
+
+  console.log(router);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,10 +45,11 @@ export default function SearchReceiver({ data, onClick }) {
           filtering.sort
         )
       ).then((res) => {
-        setFiltered(res.value.data.data);
         router.push(
           `?page=${filtering.page}&limit=${filtering.limit}&search=${filtering.search}&sort=${filtering.sort}`
         );
+
+        setFiltered(res.value.data.data);
 
         setFiltering({ ...filtering, search: "" });
       });
@@ -88,22 +91,28 @@ export default function SearchReceiver({ data, onClick }) {
         </div>
       </div>
 
-      {filtered?.map((item) => {
-        return (
-          <UserProfile
-            imageSrc={
-              item.image
-                ? `${process.env.API_HOST}/uploads/${item.image}`
-                : "/images/default.png"
-            }
-            name={`${item.firstName} ${item.lastName}`}
-            sub={item.noTelp ? `+62${item.noTelp}` : ""}
-            className="card__shadow"
-            onClick={() => onClick(item)}
-            key={item.id}
-          />
-        );
-      })}
+      {filtered.length === 0 ? (
+        <p className="text-center">
+          Name {router.query.search} cannot be found
+        </p>
+      ) : (
+        filtered?.map((item) => {
+          return (
+            <UserProfile
+              imageSrc={
+                item.image
+                  ? `${process.env.API_HOST}/uploads/${item.image}`
+                  : "/images/default.png"
+              }
+              name={`${item.firstName} ${item.lastName}`}
+              sub={item.noTelp ? `+62${item.noTelp}` : ""}
+              className="card__shadow"
+              onClick={() => onClick(item)}
+              key={item.id}
+            />
+          );
+        })
+      )}
 
       <div className="d-flex justify-content-center align-items-center">
         <ReactPaginate

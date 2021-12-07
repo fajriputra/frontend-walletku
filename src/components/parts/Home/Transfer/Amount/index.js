@@ -4,6 +4,7 @@ import Button from "components/Button";
 import FormInput from "components/FormInput";
 import UserProfile from "components/UserProfile";
 import { formatRp } from "helpers/formatRp";
+import { formatDate } from "helpers/formatDate";
 
 export default function Amount(props) {
   const { data, handlePrev, handleNext, onChange, amount, notes, underValue } =
@@ -17,7 +18,7 @@ export default function Amount(props) {
       ...data,
       receiverId: data.id,
       balanceLeft: userById.balance - data.amount,
-      date: new Date().toISOString().split("T")[0],
+      date: formatDate(new Date()),
     });
   }, [data, userById.balance]);
 

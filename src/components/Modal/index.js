@@ -90,6 +90,7 @@ export default function Modal(props) {
                     onChange={onChange}
                     value={value}
                     name={name}
+                    type="number"
                   />
                 </div>
               )}

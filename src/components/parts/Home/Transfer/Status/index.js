@@ -16,7 +16,7 @@ export default function Status({ data, isSuccess }) {
   const handlePdf = () => {
     setLoading(true);
     axios
-      .get(`/export/transaction/${data.senderId}`)
+      .get(`/export/transaction/${data.idTransaction}`)
       .then((res) => {
         window.open(`${res.data.data.url}`, "_blank", "noopener noreferrer");
       })

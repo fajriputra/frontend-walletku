@@ -55,6 +55,11 @@ export default function ProfilePage(props) {
   };
 
   const handleTopUp = () => {
+    if (!amount.amount) {
+      return toast.error("Please input your amount to made topup");
+    } else if (!amount.amount < 10000) {
+      return toast.error(`Minimum top up balance is ${formatRp(10000)}`);
+    }
     dispatch(topUp(amount))
       .then((res) => {
         toast.success(res.value.data.msg);

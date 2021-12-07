@@ -33,7 +33,7 @@ const initialState = {
 
 const stateReceiver = {
   page: 1,
-  limit: 5,
+  limit: 3,
   search: "",
   sort: "firstName ASC",
   data: [],
@@ -50,6 +50,14 @@ const passingState = {
   notes: "",
   balanceLeft: "",
   date: "",
+};
+
+const stringPattern = (value) => {
+  const re = /\s/g;
+
+  if (value.length === 1) {
+    return re.test(value);
+  }
 };
 
 export default function Transfer(props) {
@@ -108,6 +116,11 @@ export default function Transfer(props) {
   };
 
   const handleTopUp = () => {
+    if (!amount.amount) {
+      return toast.error("Please input your amount to made topup");
+    } else if (!amount.amount < 10000) {
+      return toast.error(`Minimum top up balance is ${formatRp(10000)}`);
+    }
     dispatch(topUp(amount))
       .then((res) => {
         toast.success(res.value.data.msg);
@@ -146,6 +159,8 @@ export default function Transfer(props) {
         return toast.error("Please fill your amount");
       } else if (!data.notes) {
         return toast.error("Please make a notes to transfer");
+      } else if (stringPattern(data.notes)) {
+        return toast.error("Notes can't be white space");
       } else if (data.amount < 1000) {
         return toast.error(`Minimum ${formatRp(1000)} to transfer`);
       } else if (data.amount > userById.balance) {

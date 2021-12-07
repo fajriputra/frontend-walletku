@@ -490,3 +490,23 @@ export const CloseSVG = (props) => {
     </svg>
   );
 };
+
+export const BarsSVG = (props) => {
+  return (
+    <svg
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 25 17"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1.59863 8.33333H13.5001M1.59863 1H23.5986M1.59863 15.6667H23.5986"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
