@@ -12,7 +12,7 @@
 ## About The Project
 
 
-WalletKU aims to make transactions such as transfers, top up balances, which later we can make 
+WalletKU is aims to make transactions such as transfers, top up balances, which later we can make 
 transfers to other users registered on this website.
 
 ## Demo
