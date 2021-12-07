@@ -53,16 +53,18 @@ export default function Signin(props) {
       .then((res) => {
         toast.success(res.value.data.msg);
 
-        dispatch(getUserById(res.value.data.data.id));
-
         cookie.set("token", res.value.data.data.token);
         cookie.set("id", res.value.data.data.id);
 
-        if (res.value.data.data.pin) {
-          router.push("/dashboard");
-        } else {
-          router.push("/create-pin");
-        }
+        const pin = res.value.data.data.pin;
+
+        dispatch(getUserById(res.value.data.data.id)).then(() => {
+          if (pin) {
+            router.push("/dashboard");
+          } else {
+            router.push("/create-pin");
+          }
+        });
       })
       .catch((err) => {
         err.response.data.msg &&
