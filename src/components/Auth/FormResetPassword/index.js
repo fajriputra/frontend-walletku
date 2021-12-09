@@ -129,7 +129,7 @@ export default function FormResetPassword(props) {
           </div>
 
           <Button
-            className="btn btn__confirm w-100"
+            className="btn btn__confirm w-100 mt-0"
             isLoading={props.isLoading}
             isDisabled={props.isDisabled}
           >
