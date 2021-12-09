@@ -16,13 +16,7 @@ const initialState = {
   confirmation_password: "",
   error: "",
   success: "",
-};
-
-const statusList = {
-  idle: "idle",
-  process: "process",
-  success: "success",
-  error: "error",
+  loading: false,
 };
 
 export async function getServerSideProps(context) {
@@ -40,7 +34,6 @@ export async function getServerSideProps(context) {
 
 export default function Signup(props) {
   const [user, setUser] = useState(initialState);
-  const [status, setStatus] = useState(statusList.idle);
 
   const router = useRouter();
 
@@ -51,39 +44,81 @@ export default function Signup(props) {
     setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus(statusList.process);
-    try {
-      if (password !== confirmation_password) {
-        setUser({ ...user, error: "Password doesn't matches" });
-        return setStatus(statusList.idle);
-      }
+    setUser({ ...user, loading: true });
 
-      const res = await axios.post("/auth/register", {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      !confirmation_password
+    ) {
+      setUser({
+        ...user,
+        error: "Please fill all fields",
+      });
+      return setTimeout(() => {
+        setUser(initialState);
+      }, 3000);
+    }
+
+    if (password.length < 6) {
+      setUser({
+        ...user,
+        error: "Password must be at least 6 characters",
+      });
+      return setTimeout(() => {
+        setUser({
+          ...user,
+          error: "",
+          password: "",
+          confirmation_password: "",
+          loading: false,
+        });
+      }, 3000);
+    }
+
+    if (password !== confirmation_password) {
+      setUser({
+        ...user,
+        error: "Password doesn't matches",
+      });
+      return setTimeout(() => {
+        setUser({
+          ...user,
+          error: "",
+          password: "",
+          confirmation_password: "",
+        });
+      }, 3000);
+    }
+
+    axios
+      .post("/auth/register", {
         firstName,
         lastName,
         email,
         password,
         confirmation_password,
-      });
+      })
+      .then((res) => {
+        toast.success(res.data.msg);
 
-      toast.success(res.data.msg);
+        router.push("/signin");
+      })
+      .catch((err) => {
+        err.response.data.msg &&
+          setUser({ ...user, error: err.response.data.msg });
 
-      setUser(initialState);
-
-      router.push("/signin");
-
-      setStatus(statusList.error);
-    } catch (err) {
-      err.response.data.msg &&
-        setUser({ ...user, error: err.response.data.msg });
-
-      setTimeout(() => {
+        setTimeout(() => {
+          setUser(initialState);
+        }, 3000);
+      })
+      .finally(() => {
         setUser(initialState);
-      }, 3000);
-    }
-    setStatus(statusList.success);
+      });
   };
 
   return (
@@ -113,7 +148,7 @@ export default function Signup(props) {
               strokeEmail={user.email ? "#6379f4" : "#a9a9a9"}
               strokeLock={user.password ? "#6379f4" : "#a9a9a9"}
               strokeLock2={user.confirmation_password ? "#6379f4" : "#a9a9a9"}
-              isLoading={status === statusList.process}
+              isLoading={user.loading}
               classSubmit={user.email && user.password ? " active" : ""}
               displayError={user.error}
             />

@@ -105,8 +105,6 @@ export default function FormResetPassword(props) {
           </p>
         </div>
 
-        <p className="error-helpers">{props.displayError}</p>
-
         <form
           className="right__column--form--wrapper"
           onSubmit={props.onSubmit}
@@ -127,6 +125,8 @@ export default function FormResetPassword(props) {
               stroke={props.stroke}
             />
           </div>
+
+          <p className="error-helpers">{props.displayError}</p>
 
           <Button
             className="btn btn__confirm w-100 mt-0"

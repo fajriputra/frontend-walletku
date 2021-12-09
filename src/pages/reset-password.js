@@ -9,15 +9,9 @@ import { toast } from "react-toastify";
 
 const initialState = {
   email: "",
-  linkDirect: "http://localhost:3000/confirm-password",
+  linkDirect: "https://walletku.vercel.app/confirm-password",
   error: "",
-};
-
-const statusList = {
-  idle: "idle",
-  process: "process",
-  success: "success",
-  error: "error",
+  loading: false,
 };
 
 export async function getServerSideProps(context) {
@@ -35,7 +29,6 @@ export async function getServerSideProps(context) {
 
 export default function ResetPassword(props) {
   const [form, setForm] = useState(initialState);
-  const [status, setStatus] = useState(statusList.idle);
 
   const { email, linkDirect } = form;
 
@@ -44,29 +37,35 @@ export default function ResetPassword(props) {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    setStatus(statusList.process);
-    try {
-      const res = await axios.post("/auth/forgot-password", {
-        email,
-        linkDirect,
+    setForm({ ...form, loading: true });
+
+    if (!email) {
+      setForm({
+        ...form,
+        error: "Email must be filled",
       });
-
-      toast.success(res.data.msg);
-
-      setForm(initialState);
-      setStatus(statusList.error);
-    } catch (err) {
-      err.response.data.msg &&
-        setForm({ ...form, error: err.response.data.msg });
-
-      setTimeout(() => {
+      return setTimeout(() => {
         setForm(initialState);
       }, 3000);
     }
-    setStatus(statusList.success);
+
+    axios
+      .post("/auth/forgot-password", {
+        email,
+        linkDirect,
+      })
+      .then((res) => {
+        toast.success(res.data.msg);
+      })
+      .catch((err) => {
+        err.response.data.msg && toast.error(err.response.data.msg);
+      })
+      .finally(() => {
+        setForm(initialState);
+      });
   };
 
   return (
@@ -85,7 +84,7 @@ export default function ResetPassword(props) {
               strokeEmail={form.email ? "#6379F4" : "#A9A9A9"}
               formClassReset={form.email ? "active" : ""}
               displayError={form.error}
-              isLoading={status === statusList.process}
+              isLoading={form.loading}
             />
           </div>
         </div>

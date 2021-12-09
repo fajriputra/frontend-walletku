@@ -12,58 +12,89 @@ const initialState = {
   newPassword: "",
   confirmPassword: "",
   error: "",
-};
-
-const statusList = {
-  idle: "idle",
-  process: "process",
-  success: "success",
-  error: "error",
+  loading: false,
 };
 
 export default function ConfirmPassword(props) {
-  const [form, setForm] = useState(initialState);
-  const [status, setStatus] = useState(statusList.idle);
+  const [user, setUser] = useState(initialState);
 
   const router = useRouter();
 
-  const { newPassword, confirmPassword, keysChangePassword } = form;
+  const { newPassword, confirmPassword, keysChangePassword } = user;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setUser({ ...user, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setStatus(statusList.process);
-    try {
-      if (newPassword !== confirmPassword) {
-        setForm({ ...form, error: "Password doesn't matches" });
-        return setStatus(statusList.idle);
-      }
+    setUser({ ...user, loading: true });
 
-      const res = await axios.patch(`/auth/reset-password`, {
+    if (!newPassword || !confirmPassword) {
+      setUser({
+        ...user,
+        error: "Please fill all fields",
+      });
+      return setTimeout(() => {
+        setUser(initialState);
+      }, 3000);
+    }
+
+    if (newPassword.length < 6) {
+      setUser({
+        ...user,
+        error: "Password must be at least 6 characters",
+      });
+      return setTimeout(() => {
+        setUser({
+          ...user,
+          error: "",
+          newPassword: "",
+          confirmPassword: "",
+          loading: false,
+        });
+      }, 3000);
+    }
+
+    if (newPassword !== confirmPassword) {
+      setUser({
+        ...user,
+        error: "Password doesn't matches",
+      });
+      return setTimeout(() => {
+        setUser({
+          ...user,
+          error: "",
+          newPassword: "",
+          confirmPassword: "",
+        });
+      }, 3000);
+    }
+
+    axios
+      .patch(`/auth/reset-password`, {
         keysChangePassword: router.query.id,
         newPassword,
         confirmPassword,
+      })
+      .then((res) => {
+        toast.success(res.data.msg);
+
+        router.push("/signin");
+      })
+      .catch((err) => {
+        err.response.data.msg &&
+          setUser({ ...user, error: err.response.data.msg });
+
+        setTimeout(() => {
+          setUser(initialState);
+        }, 3000);
+      })
+      .finally(() => {
+        setUser(initialState);
       });
-
-      toast.success(res.data.msg);
-
-      router.push("/signin");
-
-      setStatus(statusList.error);
-    } catch (err) {
-      err.response.data.msg &&
-        setForm({ ...form, error: err.response.data.msg });
-
-      setTimeout(() => {
-        setForm(initialState);
-      }, 3000);
-    }
-    setStatus(statusList.success);
   };
 
   return (
@@ -78,14 +109,14 @@ export default function ConfirmPassword(props) {
               isConfirm
               onSubmit={handleSubmit}
               onChange={handleChange}
-              password={form.newPassword}
-              confirm={form.confirmPassword}
-              classNewPassword={form.newPassword ? "active" : ""}
-              classConfirm={form.confirmPassword ? "active" : ""}
-              strokeLock={form.newPassword ? "#6379F4" : "#A9A9A9"}
-              strokeLock2={form.confirmPassword ? "#6379F4" : "#A9A9A9"}
-              isLoading={status === statusList.process}
-              displayError={form.error}
+              password={user.newPassword}
+              confirm={user.confirmPassword}
+              classNewPassword={user.newPassword ? "active" : ""}
+              classConfirm={user.confirmPassword ? "active" : ""}
+              strokeLock={user.newPassword ? "#6379F4" : "#A9A9A9"}
+              strokeLock2={user.confirmPassword ? "#6379F4" : "#A9A9A9"}
+              isLoading={user.loading}
+              displayError={user.error}
             />
           </div>
         </div>

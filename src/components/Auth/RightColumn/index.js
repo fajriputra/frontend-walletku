@@ -170,6 +170,7 @@ export default function RightColumn(props) {
         stroke={props.strokeEmail}
         isLoading={props.isLoading}
         isDisabled={props.isDisabled}
+        displayError={props.displayError}
       />
     );
   }
