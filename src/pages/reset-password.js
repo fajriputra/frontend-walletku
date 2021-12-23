@@ -49,7 +49,7 @@ export default function ResetPassword(props) {
       });
       return setTimeout(() => {
         setForm(initialState);
-      }, 3000);
+      }, 1000);
     }
 
     axios
@@ -83,7 +83,6 @@ export default function ResetPassword(props) {
               email={form.email}
               strokeEmail={form.email ? "#6379F4" : "#A9A9A9"}
               formClassReset={form.email ? "active" : ""}
-              displayError={form.error}
               isLoading={form.loading}
             />
           </div>

@@ -119,8 +119,6 @@ export default function RightColumn(props) {
               />
             </div>
 
-            <p className="error-helpers">{props.displayError}</p>
-
             <Button
               className={["btn btn__signup w-100", props.classSubmit].join(" ")}
               isDisabled={props.isDisabled}
@@ -153,7 +151,6 @@ export default function RightColumn(props) {
         classConfirm={props.classConfirm}
         strokeLock={props.strokeLock}
         strokeLock2={props.strokeLock2}
-        displayError={props.displayError}
         isLoading={props.isLoading}
         isDisabled={props.isDisabled}
       />
@@ -170,7 +167,6 @@ export default function RightColumn(props) {
         stroke={props.strokeEmail}
         isLoading={props.isLoading}
         isDisabled={props.isDisabled}
-        displayError={props.displayError}
       />
     );
   }
@@ -265,8 +261,6 @@ export default function RightColumn(props) {
               Forgot password?
             </Button>
           </div>
-
-          <p className="error-helpers">{props.displayError}</p>
 
           <Button
             className={["btn btn__signin w-100", props.classSubmit].join(" ")}

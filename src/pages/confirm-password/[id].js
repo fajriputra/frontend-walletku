@@ -55,7 +55,7 @@ export default function ConfirmPassword(props) {
           confirmPassword: "",
           loading: false,
         });
-      }, 3000);
+      });
     }
 
     if (newPassword !== confirmPassword) {
@@ -70,7 +70,7 @@ export default function ConfirmPassword(props) {
           newPassword: "",
           confirmPassword: "",
         });
-      }, 3000);
+      });
     }
 
     axios
@@ -85,12 +85,7 @@ export default function ConfirmPassword(props) {
         router.push("/signin");
       })
       .catch((err) => {
-        err.response.data.msg &&
-          setUser({ ...user, error: err.response.data.msg });
-
-        setTimeout(() => {
-          setUser(initialState);
-        }, 3000);
+        err.response.data.msg && toast.error(err.response.data.msg);
       })
       .finally(() => {
         setUser(initialState);
@@ -116,7 +111,6 @@ export default function ConfirmPassword(props) {
               strokeLock={user.newPassword ? "#6379F4" : "#A9A9A9"}
               strokeLock2={user.confirmPassword ? "#6379F4" : "#A9A9A9"}
               isLoading={user.loading}
-              displayError={user.error}
             />
           </div>
         </div>

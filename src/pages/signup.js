@@ -14,9 +14,6 @@ const initialState = {
   email: "",
   password: "",
   confirmation_password: "",
-  error: "",
-  success: "",
-  loading: false,
 };
 
 export async function getServerSideProps(context) {
@@ -33,6 +30,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function Signup(props) {
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(initialState);
 
   const router = useRouter();
@@ -46,7 +44,7 @@ export default function Signup(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUser({ ...user, loading: true });
+    setLoading(true);
 
     if (
       !firstName ||
@@ -55,44 +53,35 @@ export default function Signup(props) {
       !password ||
       !confirmation_password
     ) {
-      setUser({
-        ...user,
-        error: "Please fill all fields",
-      });
+      toast.error("Please fill all fields");
       return setTimeout(() => {
         setUser(initialState);
-      }, 3000);
+        setLoading(false);
+      });
     }
 
     if (password.length < 6) {
-      setUser({
-        ...user,
-        error: "Password must be at least 6 characters",
-      });
+      toast.error("Password must be at least 6 characters");
       return setTimeout(() => {
         setUser({
           ...user,
-          error: "",
           password: "",
           confirmation_password: "",
-          loading: false,
         });
-      }, 3000);
+        setLoading(false);
+      });
     }
 
     if (password !== confirmation_password) {
-      setUser({
-        ...user,
-        error: "Password doesn't matches",
-      });
+      toast.error("Password doesn't matches");
       return setTimeout(() => {
         setUser({
           ...user,
-          error: "",
           password: "",
           confirmation_password: "",
         });
-      }, 3000);
+        setLoading(false);
+      });
     }
 
     axios
@@ -109,15 +98,11 @@ export default function Signup(props) {
         router.push("/signin");
       })
       .catch((err) => {
-        err.response.data.msg &&
-          setUser({ ...user, error: err.response.data.msg });
-
-        setTimeout(() => {
-          setUser(initialState);
-        }, 3000);
+        err.response.data.msg && toast.error(err.response.data.msg);
       })
       .finally(() => {
         setUser(initialState);
+        setLoading(false);
       });
   };
 
@@ -148,9 +133,8 @@ export default function Signup(props) {
               strokeEmail={user.email ? "#6379f4" : "#a9a9a9"}
               strokeLock={user.password ? "#6379f4" : "#a9a9a9"}
               strokeLock2={user.confirmation_password ? "#6379f4" : "#a9a9a9"}
-              isLoading={user.loading}
+              isLoading={loading}
               classSubmit={user.email && user.password ? " active" : ""}
-              displayError={user.error}
             />
           </div>
         </div>

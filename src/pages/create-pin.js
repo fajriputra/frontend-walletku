@@ -11,20 +11,20 @@ import Layout from "components/Layout";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
-  if (dataCookie.isLogin) {
+  if (!dataCookie.isLogin) {
     return {
       redirect: {
-        destination: "/dashboard",
+        destination: "/signin",
         permanent: false,
       },
     };
   }
+
   return { props: {} };
 }
 
 export default function CreatePin(props) {
   const [pin, setPin] = useState({});
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { userById } = useSelector((state) => state.user);
 
@@ -63,11 +63,7 @@ export default function CreatePin(props) {
         router.push("/dashboard");
       })
       .catch((err) => {
-        err.response.data.msg && setError(err.response.data.msg);
-
-        setTimeout(() => {
-          setError("");
-        }, 3000);
+        err.response.data.msg && toast.error(err.response.data.msg);
 
         setPin({
           ...pin,
@@ -110,7 +106,6 @@ export default function CreatePin(props) {
               classSubmit={pin && isDisabled ? " active" : ""}
               isDisabled={!isDisabled}
               isLoading={loading}
-              displayError={error}
               pin1={pin.pin1}
               pin2={pin.pin2}
               pin3={pin.pin3}

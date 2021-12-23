@@ -104,7 +104,7 @@ export default function TransactionHistory({ data }) {
           nextLabel={false}
           breakLabel={"..."}
           forcePage={filtering.page - 1}
-          pageCount={pageInfo.totalData}
+          pageCount={pageInfo.totalPage}
           onPageChange={handlePagination}
           containerClassName={"pagination"}
           pageClassName={"page-item"}

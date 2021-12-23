@@ -14,7 +14,6 @@ import { toast } from "react-toastify";
 const initialState = {
   email: "",
   password: "",
-  error: "",
 };
 
 export async function getServerSideProps(context) {
@@ -67,12 +66,10 @@ export default function Signin(props) {
         });
       })
       .catch((err) => {
-        err.response.data.msg &&
-          setUser({ ...user, error: err.response.data.msg });
-
-        setTimeout(() => {
-          setUser(initialState);
-        }, 3000);
+        err.response.data.msg && toast.error(err.response.data.msg);
+      })
+      .finally(() => {
+        setUser(initialState);
       });
   };
 
@@ -96,7 +93,6 @@ export default function Signin(props) {
               classSubmit={
                 user.email && user.password && isDisabled ? " active" : ""
               }
-              displayError={user.error}
               isLoading={isLoading}
               isDisabled={!isDisabled}
             />

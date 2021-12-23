@@ -23,8 +23,6 @@ export default function SearchReceiver({ data, onClick }) {
 
   const { pageInfo } = useSelector((state) => state.history);
 
-  console.log(router);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFiltering({ ...filtering, [name]: value });
@@ -119,7 +117,8 @@ export default function SearchReceiver({ data, onClick }) {
           previousLabel={false}
           nextLabel={false}
           breakLabel={"..."}
-          pageCount={pageInfo.totalData}
+          forcePage={filtering.page - 1}
+          pageCount={pageInfo.totalPage}
           onPageChange={handlePagination}
           containerClassName={"pagination"}
           pageClassName={"page-item"}
