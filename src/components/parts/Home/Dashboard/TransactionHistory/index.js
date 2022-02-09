@@ -68,10 +68,8 @@ export default function TransactionHistory({ data }) {
         </select>
       </div>
 
-      {filtered.length === 0 ? (
-        <p className="text-center">Oops, Data not found on this page</p>
-      ) : (
-        filtered?.map((item) => {
+      {filtered.length > 0 ? (
+        filtered.map((item) => {
           return (
             <UserProfile
               name={`${item.firstName} ${item.lastName}`}
@@ -96,23 +94,27 @@ export default function TransactionHistory({ data }) {
             </UserProfile>
           );
         })
+      ) : (
+        <p className="text-center">Oops, Data not found on this page</p>
       )}
 
-      <div className="d-flex justify-content-center align-items-center">
-        <ReactPaginate
-          previousLabel={false}
-          nextLabel={false}
-          breakLabel={"..."}
-          forcePage={filtering.page - 1}
-          pageCount={pageInfo.totalPage}
-          onPageChange={handlePagination}
-          containerClassName={"pagination"}
-          pageClassName={"page-item"}
-          pageLinkClassName={"page-link"}
-          disabledClassName={"disabled"}
-          activeClassName={"active"}
-        />
-      </div>
+      {filtered.length > 0 && (
+        <div className="d-flex justify-content-center align-items-center">
+          <ReactPaginate
+            previousLabel={false}
+            nextLabel={false}
+            breakLabel={"..."}
+            forcePage={filtering.page - 1}
+            pageCount={pageInfo.totalPage}
+            onPageChange={handlePagination}
+            containerClassName={"pagination"}
+            pageClassName={"page-item"}
+            pageLinkClassName={"page-link"}
+            disabledClassName={"disabled"}
+            activeClassName={"active"}
+          />
+        </div>
+      )}
     </div>
   );
 }

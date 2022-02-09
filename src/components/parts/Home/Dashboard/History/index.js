@@ -5,11 +5,8 @@ import { formatRp } from "helpers/formatRp";
 export default function History({ data }) {
   return (
     <>
-      {data.length === 0 ? (
-        // eslint-disable-next-line react/no-unescaped-entities
-        <p className="text-center">Oops, You haven't made a transaction</p>
-      ) : (
-        data?.map((item) => {
+      {data.length > 0 ? (
+        data.map((item) => {
           return (
             <UserProfile
               name={`${item.firstName} ${item.lastName}`}
@@ -33,6 +30,9 @@ export default function History({ data }) {
             </UserProfile>
           );
         })
+      ) : (
+        // eslint-disable-next-line react/no-unescaped-entities
+        <p className="text-center">Oops, You haven't made a transaction</p>
       )}
     </>
   );

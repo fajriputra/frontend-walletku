@@ -6,6 +6,7 @@ const initialState = {
   isError: "",
   isLoading: false,
   msg: "",
+  pageInfo: {},
 };
 
 const user = (state = initialState, action) => {
@@ -26,6 +27,7 @@ const user = (state = initialState, action) => {
         isLoading: false,
         allUser: action.payload.data.data,
         msg: action.payload.data.msg,
+        pageInfo: action.payload.data.pagination,
       };
     }
 
@@ -36,6 +38,7 @@ const user = (state = initialState, action) => {
         isLoading: false,
         allUser: [],
         msg: action.payload.response.data.msg,
+        pageInfo: {},
       };
     }
 

@@ -7,22 +7,12 @@ import { PhoneSVG } from "components/SVG";
 import { toast } from "react-toastify";
 import { getUserById } from "stores/user/actions";
 
-const initialState = {
-  noTelp: "",
-};
-
 export default function AddPhone(props) {
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(initialState);
+  const [telp, setTelp] = useState("");
   const { userById } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-
-  // setUser({...phone, noTelp: })
-
-  // }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,22 +25,22 @@ export default function AddPhone(props) {
     axios
       .patch(`/user/profile/${userById.id}`, user)
       .then(() => {
-        if (!user.noTelp) {
+        if (!telp) {
           return toast.error("Please fill out the form");
-        } else if (user.noTelp.length > 12) {
+        } else if (telp.length > 12) {
           return toast.error("Phone number only accepts 12 digits");
         }
 
         toast.success("Success add phone number");
         dispatch(getUserById(userById.id));
-        setUser({ ...user, noTelp: "" });
+        setTelp("");
       })
       .catch((err) => {
         err.response.data.msg && toast.error(err.response.data.msg);
-        setUser({ ...user, noTelp: "" });
+        setTelp("");
       })
       .finally(() => {
-        setUser({ ...user, noTelp: "" });
+        setTelp("");
         setLoading(false);
       });
   };
@@ -78,14 +68,14 @@ export default function AddPhone(props) {
         <form onSubmit={handlePhone}>
           <div
             className={`form-group position-relative ${
-              user.noTelp.length > 12 ? "error" : "not-error"
+              telp.length > 12 ? "error" : "not-error"
             }`}
           >
             <FormInput
               type="number"
               inputClassName="form__add--phone"
               placeholder="Enter your phone number"
-              value={user.noTelp}
+              value={telp}
               onChange={handleChange}
               name="noTelp"
             />
@@ -102,7 +92,7 @@ export default function AddPhone(props) {
             </div>
           </div>
 
-          {user.noTelp.length > 12 && (
+          {telp.length > 12 && (
             <p
               style={{
                 color: "#ff5b37",

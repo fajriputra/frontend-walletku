@@ -30,12 +30,7 @@ export default function ManagePhone(props) {
             <h5>{`+62${userById.noTelp}`}</h5>
           </div>
 
-          <TrashSVG
-            width="28"
-            height="28"
-            stroke="#A9A9A9"
-            onClick={props.handleTrash}
-          />
+          <TrashSVG width="28" height="28" stroke="#A9A9A9" />
         </div>
       </div>
     </div>

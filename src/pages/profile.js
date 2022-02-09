@@ -13,6 +13,7 @@ import Sidebar from "components/Sidebar";
 import { topUp } from "stores/topup/actions";
 import { toast } from "react-toastify";
 import { getDataCookie } from "middlewares/authorizationPage";
+import { formatRp } from "helpers/formatRp";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
@@ -57,7 +58,7 @@ export default function ProfilePage(props) {
   const handleTopUp = () => {
     if (!amount.amount) {
       return toast.error("Please input your amount to made topup");
-    } else if (!amount.amount < 10000) {
+    } else if (amount.amount < 10000) {
       return toast.error(`Minimum top up balance is ${formatRp(10000)}`);
     }
     dispatch(topUp(amount))

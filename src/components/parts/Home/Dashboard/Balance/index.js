@@ -12,11 +12,7 @@ export default function Balance(props) {
       </div>
 
       <div className="dashboard__balance--card--button">
-        <Button
-          className="btn btn__flex w-100"
-          onClick={props.topup}
-          isLoading={props.isLoading}
-        >
+        <Button className="btn btn__flex w-100" onClick={props.topup}>
           <PlusSVG stroke="#B5B0ED" width="28" height="28" className="me-3" />
           Top Up
         </Button>

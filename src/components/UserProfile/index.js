@@ -11,7 +11,6 @@ export default function UserProfile(props) {
       >
         <div
           className={["user__profile--data", props.innerClassName].join(" ")}
-          key={props.key}
         >
           <Figure
             srcImage={props.imageSrc}

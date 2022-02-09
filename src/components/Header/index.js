@@ -39,7 +39,9 @@ export default function Header(props) {
             <ul className="navbar-nav ms-auto mb-2 mt-3 mt-lg-0 mb-lg-0">
               {isLoggedin ? (
                 <UserProfile
-                  name={`${userById.firstName} ${userById.lastName}`}
+                  name={`${userById.firstName || ""} ${
+                    userById.lastName || ""
+                  }`}
                   sub={userById.noTelp ? `+62${userById.noTelp}` : ""}
                   imageSrc={
                     userById.image

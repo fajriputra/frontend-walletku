@@ -118,7 +118,7 @@ export default function Transfer(props) {
   const handleTopUp = () => {
     if (!amount.amount) {
       return toast.error("Please input your amount to made topup");
-    } else if (!amount.amount < 10000) {
+    } else if (amount.amount < 10000) {
       return toast.error(`Minimum top up balance is ${formatRp(10000)}`);
     }
     dispatch(topUp(amount))
@@ -192,24 +192,6 @@ export default function Transfer(props) {
             toast.success(res.data.msg);
 
             setData({ ...data, idTransaction: res.data.data.id });
-
-            // if (
-            //   res.statusText === "OK" &&
-            //   res.status >= 200 &&
-            //   res.status < 300
-            // ) {
-            //   setError({
-            //     ...error,
-            //     message: toast.success(res.data.msg),
-            //     isError: false,
-            //   });
-            // } else if (res.status) {
-            //   setError({
-            //     ...error,
-            //     message: toast.error("Server cannot be reached"),
-            //     isError: true,
-            //   });
-            // }
 
             stepsCloseModal();
           })

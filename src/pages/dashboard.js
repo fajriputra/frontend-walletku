@@ -101,7 +101,7 @@ export default function Dashboard(props) {
   const handleTopUp = () => {
     if (!amount.amount) {
       return toast.error("Please input your amount to made topup");
-    } else if (!amount.amount < 10000) {
+    } else if (amount.amount < 10000) {
       return toast.error(`Minimum top up balance is ${formatRp(10000)}`);
     }
     dispatch(topUp(amount))
@@ -150,7 +150,6 @@ export default function Dashboard(props) {
                     balance={formatRp(userById.balance)}
                     noTelp={userById.noTelp ? `+62${userById.noTelp}` : ""}
                     topup={openModal}
-                    isLoading={topup.isLoading}
                   />
 
                   <div className="row">

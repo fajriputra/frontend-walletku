@@ -21,7 +21,7 @@ export default function SearchReceiver({ data, onClick }) {
   const [filtering, setFiltering] = useState(initialState);
   const [filtered, setFiltered] = useState(data);
 
-  const { pageInfo } = useSelector((state) => state.history);
+  const { pageInfo } = useSelector((state) => state.user);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,20 +36,13 @@ export default function SearchReceiver({ data, onClick }) {
       });
 
       dispatch(
-        getAllUser(
-          filtering.page,
-          filtering.limit,
-          filtering.search,
-          filtering.sort
-        )
+        getAllUser(1, filtering.limit, filtering.search, filtering.sort)
       ).then((res) => {
-        router.push(
-          `?page=${filtering.page}&limit=${filtering.limit}&search=${filtering.search}&sort=${filtering.sort}`
-        );
+        router.push(`?search=${filtering.search}`);
 
         setFiltered(res.value.data.data);
 
-        setFiltering({ ...filtering, search: "" });
+        setFiltering({ ...filtering, search: "", page: 1 });
       });
     }
   };
@@ -65,9 +58,7 @@ export default function SearchReceiver({ data, onClick }) {
       getAllUser(selected, filtering.limit, filtering.search, filtering.sort)
     ).then((res) => {
       setFiltered(res.value.data.data);
-      router.push(
-        `?page=${selected}&limit=${filtering.limit}&search=${filtering.search}&sort=${filtering.sort}`
-      );
+      router.push(`?page=${selected}&limit=${filtering.limit}`);
     });
   };
 
@@ -89,12 +80,8 @@ export default function SearchReceiver({ data, onClick }) {
         </div>
       </div>
 
-      {filtered.length === 0 ? (
-        <p className="text-center">
-          Name {router.query.search} cannot be found
-        </p>
-      ) : (
-        filtered?.map((item) => {
+      {filtered.length > 0 ? (
+        filtered.map((item) => {
           return (
             <UserProfile
               imageSrc={
@@ -110,6 +97,10 @@ export default function SearchReceiver({ data, onClick }) {
             />
           );
         })
+      ) : (
+        <p className="text-center">
+          User {router.query.search} cannot be found
+        </p>
       )}
 
       <div className="d-flex justify-content-center align-items-center">
